@@ -12,6 +12,7 @@ if( ! defined( 'XOOPS_ROOT_PATH' ) ) die( 'XOOPS root path not defined' ) ;
 
 
 function b_news_feature_show( $options ) {
+	
     global $xoopsDB, $xoopsUser;
     $myts = & MyTextSanitizer :: getInstance();
 
@@ -25,6 +26,7 @@ function b_news_feature_show( $options ) {
     if (!is_object($module)) return $block;
     include_once XOOPS_ROOT_PATH.'/modules/news/class/class.newsstory.php';
     include_once XOOPS_ROOT_PATH.'/modules/news/include/functions.php';
+    require_once XOOPS_ROOT_PATH . '/modules/newsslider/include/utils.php';
     
     $block['speed'] = isset($options[1]) && $options[1] != '' ?  $options[1] : '5';
     $block['includedate'] = ($options[2]==1)? 1:0;
@@ -53,10 +55,13 @@ function b_news_feature_show( $options ) {
         if ($options[0] > 5) { $options[0] = 4; }
         $stories = $tmpstory->getAllPublished($options[0], 0, $restricted, $topics, true, $options[4]);
     }
-
+//echo'<pre>'; 
+//print_r($stories);
+//echo'</pre>';
     unset($tmpstory);
       if(count($stories)==0)  return '';
-      $i=0;
+      
+      $i=1;
       
       foreach ( $stories as $story ) {
         $news = array();
@@ -70,17 +75,28 @@ function b_news_feature_show( $options ) {
         $news['no'] = $i++;
         $news['author']= sprintf("%s %s",_POSTEDBY,$story->uname());
         $news['topic_title'] = $story->topic_title();
-        if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/images/image'.$i.'.jpg')) {
-          $news['picture'] = 'image'.$i.'.jpg';
+		
+        if (file_exists(XOOPS_ROOT_PATH .'/uploads/news/image/'.$story->picture()) &&($story->picture()!='')) {	
+			$news['picture'] = XOOPS_URL.'/uploads/news/image/'.$story->picture();
+			if  (!file_exists(XOOPS_ROOT_PATH .'/uploads/news/image/thumb-'.$story->picture()) &&($story->picture()!=''))	{		
+				NewsUtils::News_ResizePicture( XOOPS_ROOT_PATH .'/uploads/news/image/'.$story->picture() , 
+				XOOPS_ROOT_PATH .'/uploads/news/image/thumb-'.$story->picture(), 80, 50);
+				//xoops_getModuleOption ( 'img_thumbwidth', $NewsModule->getVar ( 'dirname' ) ) , xoops_getModuleOption ( 'img_thumbheight', $NewsModule->getVar ( 'dirname' ) ));
+				$news['thumb'] = XOOPS_URL.'/uploads/news/image/thumb-'.$story->picture();
+			} else {
+				$news['thumb'] = XOOPS_URL.'/uploads/news/image/thumb-'.$story->picture();
+			}
         } else {
-          $news['picture'] = 'image1.jpg';
+			if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/images/image'.$i.'.jpg')) {	
+				$news['picture'] = XOOPS_URL.'/modules/newsslider/images/image'.$i.'.jpg';
+				$news['thumb'] = XOOPS_URL.'/modules/newsslider/images/image'.$i.'-small.jpg';
+			} else {
+				$news['picture'] = XOOPS_URL.'/modules/newsslider/images/image1.jpg';
+				$news['thumb'] = XOOPS_URL.'/modules/newsslider/images/image1-small.jpg';
+				
+			}
         }        
-        if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/images/image'.$i.'-small.jpg')) {
-          $news['thumb'] = 'image'.$i.'-small.jpg';
-        } else {
-          $news['picture'] = 'image1-small.jpg';
-        }
- 
+		
         if ($options[7] > 0) {
           $html = $story->nohtml() == 1 ? 0 : 1;
           //$html = $options[8] == 1 ? 0 : 1;//
