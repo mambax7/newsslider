@@ -11,7 +11,7 @@
         <ul id="sliderContent">
             <{foreach item=news from=$block.stories}>
             <li class="sliderImage">
-                <a href="<{$xoops_url}>/modules/news/article.php?storyid=<{$news.id}>"><img src="<{$xoops_url}>/modules/newsslider/images/s3/<{$news.picture}>" alt="<{$news.title}>" />
+                <a href="<{$xoops_url}>/modules/news/article.php?storyid=<{$news.id}>"><img src="<{$news.picture}>" height="100% alt="<{$news.title}>" />
                 <span class="<{$news.class}>"><strong><{$news.title}></strong><br /><{if $block.author}><{$news.author}><{/if}> <{if $block.includedate}><{$news.date}>: <{/if}> <{$news.teaser}></span>
             </li>
 	          <{/foreach}>  
