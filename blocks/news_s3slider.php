@@ -70,7 +70,12 @@ function b_news_s3slider_show( $options ) {
         //$news['author'] = $story->uname();
         $news['author']= sprintf("%s %s",_POSTEDBY,$story->uname());
         $news['topic_title'] = $story->topic_title();
-        $news['picture'] = 'image'.$i.'.jpg';
+        if (file_exists(XOOPS_ROOT_PATH .'/uploads/news/image/'.$story->picture()) &&($story->picture()!='')) {	
+			$news['picture'] = XOOPS_URL.'/uploads/news/image/'.$story->picture();
+        //$news['picture'] = 'image'.$i.'.jpg';
+        } else {
+          $news['picture'] = XOOPS_URL.'/modules/newsslider/images/s3/image1.jpg';
+        }
  
         if ($options[7] > 0) {
           $html = $story->nohtml() == 1 ? 0 : 1;
