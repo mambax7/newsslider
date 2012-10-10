@@ -55,9 +55,6 @@ function b_news_feature_show( $options ) {
         if ($options[0] > 5) { $options[0] = 4; }
         $stories = $tmpstory->getAllPublished($options[0], 0, $restricted, $topics, true, $options[4]);
     }
-//echo'<pre>'; 
-//print_r($stories);
-//echo'</pre>';
     unset($tmpstory);
       if(count($stories)==0)  return '';
       
@@ -81,7 +78,6 @@ function b_news_feature_show( $options ) {
 			if  (!file_exists(XOOPS_ROOT_PATH .'/uploads/news/image/thumb-'.$story->picture()) &&($story->picture()!=''))	{		
 				NewsUtils::News_ResizePicture( XOOPS_ROOT_PATH .'/uploads/news/image/'.$story->picture() , 
 				XOOPS_ROOT_PATH .'/uploads/news/image/thumb-'.$story->picture(), 80, 50);
-				//xoops_getModuleOption ( 'img_thumbwidth', $NewsModule->getVar ( 'dirname' ) ) , xoops_getModuleOption ( 'img_thumbheight', $NewsModule->getVar ( 'dirname' ) ));
 				$news['thumb'] = XOOPS_URL.'/uploads/news/image/thumb-'.$story->picture();
 			} else {
 				$news['thumb'] = XOOPS_URL.'/uploads/news/image/thumb-'.$story->picture();
