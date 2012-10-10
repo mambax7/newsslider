@@ -63,7 +63,7 @@ function b_news_bxslider_show( $options ) {
     }
     unset($tmpstory);
       if(count($stories)==0)  return '';
-      $i=0;
+      $i=1;
       foreach ( $stories as $story ) {
         $news = array();
 
@@ -77,15 +77,22 @@ function b_news_bxslider_show( $options ) {
         $news['author']= sprintf("%s %s",_POSTEDBY,$story->uname());
         $news['topic_title'] = $story->topic_title();
 
-        if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/images/image'.$i.'.jpg')) {
-          $news['picture'] = 'image'.$i.'.jpg';
+
+
+        if (file_exists(XOOPS_ROOT_PATH .'/uploads/news/image/'.$story->picture()) &&($story->picture()!='')) {	
+			$news['picture'] = XOOPS_URL.'/uploads/news/image/'.$story->picture();
         } else {
-          $news['picture'] = 'image1.jpg';
-        } 
+			if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/images/image'.$i.'.jpg')) {	
+				$news['picture'] = XOOPS_URL.'/modules/newsslider/images/image'.$i.'.jpg';
+			} else {
+				$news['picture'] = XOOPS_URL.'/modules/newsslider/images/image1.jpg';
+			}
+        }   
+        
+        
         
         if ($options[12] > 0) {
           $html = $story->nohtml() == 1 ? 0 : 1;
-          //$html = $options[17] == 1 ? 0 : 1;//
           $smiley = $options[18] == 1 ? 0 : 1;
           $xcode = $options[19] == 1 ? 0 : 1;
           $image = $options[20] == 1 ? 0 : 1;
@@ -94,7 +101,6 @@ function b_news_bxslider_show( $options ) {
           if ($module->getVar('version') <= 160) {
             $news['teaser'] = xoops_substr($myts->displayTarea(strip_tags($story->hometext)), 0, $options[12]+3);
           } else {
-            //$news['teaser'] = news_truncate_tagsafe($myts->displayTarea($story->hometext, $html), $options[12]+3);
             $news['teaser'] = news_truncate_tagsafe(strip_tags($myts->displayTarea($story->hometext, $html, $smiley, $xcode, $image, $br )), $options[12]+3);
           }
           if($infotips>0) {

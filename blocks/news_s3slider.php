@@ -37,7 +37,6 @@ function b_news_s3slider_show( $options ) {
       $restricted = news_getmoduleoption('restrictindex');
       $dateformat = news_getmoduleoption('dateformat');
       $infotips = news_getmoduleoption('infotips');
-      //if($dateformat == '') $dateformat = 'M d, Y g:i A';// Int.date
       if($dateformat == '') $dateformat = 'd. M Y';
     } else {
       $restricted = isset($newsConfig['restrictindex']) && $newsConfig['restrictindex'] == 1 ?  1: 0;
@@ -67,14 +66,16 @@ function b_news_s3slider_show( $options ) {
         $news['date'] = formatTimestamp($story->published(), $dateformat);
         $news['class'] = $options[5];
         $news['no'] = $i++;
-        //$news['author'] = $story->uname();
         $news['author']= sprintf("%s %s",_POSTEDBY,$story->uname());
         $news['topic_title'] = $story->topic_title();
-        $news['picture'] = 'image'.$i.'.jpg';
+        if (file_exists(XOOPS_ROOT_PATH .'/uploads/news/image/'.$story->picture()) &&($story->picture()!='')) {	
+			$news['picture'] = XOOPS_URL.'/uploads/news/image/'.$story->picture();
+        } else {
+          $news['picture'] = XOOPS_URL.'/modules/newsslider/images/s3/image1.jpg';
+        }
  
         if ($options[7] > 0) {
           $html = $story->nohtml() == 1 ? 0 : 1;
-          //$html = $options[8] == 1 ? 0 : 1;//
           $smiley = $options[9] == 1 ? 0 : 1;
           $xcode = $options[10] == 1 ? 0 : 1;
           $image = $options[11] == 1 ? 0 : 1;
@@ -105,16 +106,6 @@ function b_news_s3slider_show( $options ) {
     $block['lang_read_more']= _MB_NWS_READMORE;
     global $xoTheme; 
     $xoTheme -> addStylesheet( 'modules/newsslider/s3_style.css' );
-    //$xoTheme->addScript("browse.php?Frameworks/jquery/jquery.js"); # Add built in JQuery 
-    
-    /*$jquery = ($options[8]==1) ? 1:0;
-    if ( $jquery ) {
-      if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/js/jquery.min.js')) {
-      if(isset($xoTheme) && is_object($xoTheme)) {
-        $xoTheme -> addScript('/modules/newsslider/js/jquery.min.js', array( 'type' => 'text/javascript' ) );
-        $xoTheme -> addScript('/modules/newsslider/js/s3Slider.js', array( 'type' => 'text/javascript' ) );
-      }}
-    }*/    
     return $block;
 }
 
@@ -125,7 +116,6 @@ function b_news_s3slider_edit( $options ){
 	$form  = "<table width='100%' border='0'  class='bg2'>";
 	$form .= "<tr><th width='50%'>"._OPTIONS."</th><th width='50%'>"._MB_NWS_SETTINGS."</th></tr>";
 	$form .= "<tr><td class='even'>"._MB_NWS_BLIMIT."</td><td class='odd'><input type='text' name='options[0]' size='16' maxlength=3 value='".$options[0]."' /></td></tr>";
-	//$form .= "<tr><td class='even'>"._MB_NWS_STORIES."</td><td class='odd'><input type='text' name='options[]' value='" . $options[1] . "' size='20'></td></tr>";
 	$form .= "<tr><td class='even'>"._MB_NWS_BPACE."</td><td class='odd'><input type='text' name='options[1]' size='16' maxlength=2 value='".$options[1]."' /></td></tr>";
 	//---
 	$form .= "<tr><td class='even'>"._MB_NWS_SHOWDATE."</td><td class='odd'>";

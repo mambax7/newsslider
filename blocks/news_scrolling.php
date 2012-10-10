@@ -40,7 +40,6 @@ function b_scrolling_news_show( $options ) {
       $restricted = news_getmoduleoption('restrictindex');
       $dateformat = news_getmoduleoption('dateformat');
       $infotips = news_getmoduleoption('infotips');
-      //if($dateformat == '') $dateformat = 'M d, Y g:i A'; //Int. Date
       if($dateformat == '') $dateformat = 'd. M. Y G:i';
     } else {
       $restricted = isset($newsConfig['restrictindex']) && $newsConfig['restrictindex'] == 1 ?  1: 0;
@@ -75,7 +74,6 @@ function b_scrolling_news_show( $options ) {
 
         if ($options[10] > 0) {
           $html = $story->nohtml() == 1 ? 0 : 1;
-          //$html = $options[11] == 1 ? 0 : 1;
           $clearhtml = $options[8] == 1 ? 0 : 1;
           $smiley = $options[12] == 1 ? 0 : 1;
           $xcode = $options[13] == 1 ? 0 : 1;
@@ -95,6 +93,7 @@ function b_scrolling_news_show( $options ) {
         } else {
           $news['teaser'] = '';
           if($infotips>0) {
+			//--- for News versions prior to 1.60
             //$newsteaser = xoops_substr($myts->displayTarea(strip_tags($story->hometext)), 0, $options[10]+3);
             //---for news version 1.60+
             $news['teaser'] = news_truncate_tagsafe(strip_tags($myts->displayTarea($story->hometext, $html, $smiley, $xcode, $image, $br ), $options[10]+3));
