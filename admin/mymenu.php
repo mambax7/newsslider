@@ -16,7 +16,6 @@ if( ! defined( 'XOOPS_ORETEKI' ) ) {
 
 	include( './menu.php' ) ;
 
-//	array_push( $adminmenu , array( 'title' => _PREFERENCES , 'link' => '../system/admin.php?fct=preferences&op=showmod&mod=' . $module->getvar('mid') ) ) ;
 	$menuitem_dirname = $module->getvar('dirname') ;
 	if( $module->getvar('hasconfig') ) array_push( $adminmenu , array( 'title' => _PREFERENCES , 'link' => 'admin/admin.php?fct=preferences&op=showmod&mod=' . $module->getvar('mid') ) ) ;
 
@@ -41,19 +40,6 @@ if( ! defined( 'XOOPS_ORETEKI' ) ) {
 		}
 	}
 
-
-
-/*	// display
-	foreach( $adminmenu as $menuitem ) {
-		echo "<a href='".XOOPS_URL."/modules/$menuitem_dirname/{$menuitem['link']}' style='background-color:{$menuitem['color']};font:normal normal bold 9pt/12pt;'>{$menuitem['title']}</a> &nbsp; \n" ;
-
-		if( ++ $menuitem_count >= 4 ) {
-			echo "</div>\n<div width='95%' align='center'>\n" ;
-			$menuitem_count = 0 ;
-		}
-	}
-	echo "</div>\n" ;
-*/
 	// display
 	echo "<div style='text-align:left;width:98%;'>" ;
 	foreach( $adminmenu as $menuitem ) {

@@ -79,7 +79,6 @@ function b_news_glider_show( $options ) {
 
         if ($options[16] > 0) {
           $html = $story->nohtml() == 1 ? 0 : 1;
-          //$html = $options[18] == 1 ? 0 : 1;//
           $smiley = $options[19] == 1 ? 0 : 1;
           $xcode = $options[20] == 1 ? 0 : 1;
           $image = $options[21] == 1 ? 0 : 1;

@@ -93,7 +93,6 @@ function b_news_bxslider_show( $options ) {
         
         if ($options[12] > 0) {
           $html = $story->nohtml() == 1 ? 0 : 1;
-          //$html = $options[17] == 1 ? 0 : 1;//
           $smiley = $options[18] == 1 ? 0 : 1;
           $xcode = $options[19] == 1 ? 0 : 1;
           $image = $options[20] == 1 ? 0 : 1;
@@ -102,7 +101,6 @@ function b_news_bxslider_show( $options ) {
           if ($module->getVar('version') <= 160) {
             $news['teaser'] = xoops_substr($myts->displayTarea(strip_tags($story->hometext)), 0, $options[12]+3);
           } else {
-            //$news['teaser'] = news_truncate_tagsafe($myts->displayTarea($story->hometext, $html), $options[12]+3);
             $news['teaser'] = news_truncate_tagsafe(strip_tags($myts->displayTarea($story->hometext, $html, $smiley, $xcode, $image, $br )), $options[12]+3);
           }
           if($infotips>0) {
