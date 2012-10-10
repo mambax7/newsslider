@@ -37,7 +37,7 @@ $("#slider1").bxSlider({
 <ul id="slider1">
 <{foreach item=news from=$block.stories}>
   <li>
-    <img <{if $block.float == 1}>style="float:left; padding:0px"<{elseif $block.float == 2}>style="float:right;padding:2px"<{/if}> src="<{$xoops_url}>/modules/newsslider/images/<{$news.picture}>" width="<{$block.imgwidth}>%" title="<{$news.topic_title}> - <{$news.title}>" alt="<{$news.topic_title}> - <{$news.title}>" />
+    <img <{if $block.float == 1}>style="float:left; padding:0px"<{elseif $block.float == 2}>style="float:right;padding:2px"<{/if}> src="<{$news.picture}>" width="<{$block.imgwidth}>%" title="<{$news.topic_title}> - <{$news.title}>" alt="<{$news.topic_title}> - <{$news.title}>" />
     <div class="bxcontent">
     <a style="cursor:help"  href="<{$xoops_url}>/modules/news/article.php?storyid=<{$news.id}>" <{$news.infotips}>>
     <h4><{$news.title}></h4></A>
