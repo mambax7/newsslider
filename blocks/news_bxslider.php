@@ -63,7 +63,7 @@ function b_news_bxslider_show( $options ) {
     }
     unset($tmpstory);
       if(count($stories)==0)  return '';
-      $i=0;
+      $i=1;
       foreach ( $stories as $story ) {
         $news = array();
 
@@ -77,11 +77,19 @@ function b_news_bxslider_show( $options ) {
         $news['author']= sprintf("%s %s",_POSTEDBY,$story->uname());
         $news['topic_title'] = $story->topic_title();
 
-        if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/images/image'.$i.'.jpg')) {
-          $news['picture'] = 'image'.$i.'.jpg';
+
+
+        if (file_exists(XOOPS_ROOT_PATH .'/uploads/news/image/'.$story->picture()) &&($story->picture()!='')) {	
+			$news['picture'] = XOOPS_URL.'/uploads/news/image/'.$story->picture();
         } else {
-          $news['picture'] = 'image1.jpg';
-        } 
+			if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/images/image'.$i.'.jpg')) {	
+				$news['picture'] = XOOPS_URL.'/modules/newsslider/images/image'.$i.'.jpg';
+			} else {
+				$news['picture'] = XOOPS_URL.'/modules/newsslider/images/image1.jpg';
+			}
+        }   
+        
+        
         
         if ($options[12] > 0) {
           $html = $story->nohtml() == 1 ? 0 : 1;
