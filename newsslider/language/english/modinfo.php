@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * $Id: modinfo.php v 1.0 11 Jan 2012 Yerres Exp $
  * Module: newsslider
@@ -24,4 +24,3 @@ define("_MI_NWS_BNAME2", "Featured Content Glider");
 define("_MI_NWS_BNAME3", "Featured XOOPS News");
 define("_MI_NWS_BNAME4", "S3 Slider");
 define("_MI_NWS_BNAME5", "bxSlider");
-?>

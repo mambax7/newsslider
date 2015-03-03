@@ -16,14 +16,14 @@ if (strstr(XOOPS_VERSION, "XOOPS 2.0")){
   $adminmenu[$i]['title'] = _MI_NWS_MENU;
   $adminmenu[$i]['link'] = "admin/myblocksadmin.php";
 } else {
-  $adminmenu[$i]['title'] = _MI_NWS_MENU;// uncomment if necessary, this can cause errors  
+  $adminmenu[$i]['title'] = _MI_NWS_MENU;// uncomment if necessary, this can cause errors
   $adminmenu[$i]['link'] = '../../modules/system/admin.php?fct=blocksadmin&op=list';
 }
 
 if (isset($xoopsModule)) {
   $i=0;
-	$headermenu[$i]['title'] = _MI_NWS_UPDATEMODULE;
-	$headermenu[$i]['link'] = XOOPS_URL . "/modules/system/admin.php?fct=modulesadmin&op=update&module=" . $xoopsModule->getVar('dirname');
+    $headermenu[$i]['title'] = _MI_NWS_UPDATEMODULE;
+    $headermenu[$i]['link'] = XOOPS_URL . "/modules/system/admin.php?fct=modulesadmin&op=update&module=" . $xoopsModule->getVar('dirname');
   // Blocks for Xoops versions 2.0
   if (strstr(XOOPS_VERSION, "XOOPS 2.0")){
     $i++;
@@ -35,4 +35,3 @@ if (isset($xoopsModule)) {
     $headermenu[$i]['link'] = XOOPS_URL . "/modules/system/admin.php?fct=blocksadmin&op=list&filter=1&selgen=" . $xoopsModule->getVar('mid') . "&selmod=-2&selgrp=-1&selvis=-1";
   }
 }
-?>

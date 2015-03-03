@@ -6,7 +6,7 @@
   * Module: newsslider 1.1
   * Author: Yerres
   * Licence : GPL
-  * 
+  *
 */
 if( ! defined( 'XOOPS_ROOT_PATH' ) ) die( 'XOOPS root path not defined' ) ;
 
@@ -103,17 +103,18 @@ function b_news_glider_show( $options ) {
         $block['stories'][] = $news;
     }
     $block['lang_read_more']= _MB_NWS_READMORE;
+
     return $block;
 }
 
 //----
 function b_news_glider_edit( $options ){
-	global $xoopsDB;
-	$myts = & MyTextSanitizer :: getInstance();
-	$form  = "<table width='100%' border='0'  class='bg2'>";
-	$form .= "<tr><th width='50%'>"._OPTIONS."</th><th width='50%'>"._MB_NWS_SETTINGS."</th></tr>";
-	$form .= "<tr><td class='even'>"._MB_NWS_BLIMIT."</td><td class='odd'><input type='text' name='options[0]' size='16' maxlength=3 value='".$options[0]."' /></td></tr>";
-	$form .= "<tr><td class='even'>"._MB_NWS_BPACE."</td><td class='odd'><input type='text' name='options[1]' size='16' maxlength=2 value='".$options[1]."' /></td></tr>";
+    global $xoopsDB;
+    $myts = & MyTextSanitizer :: getInstance();
+    $form  = "<table width='100%' border='0'  class='bg2'>";
+    $form .= "<tr><th width='50%'>"._OPTIONS."</th><th width='50%'>"._MB_NWS_SETTINGS."</th></tr>";
+    $form .= "<tr><td class='even'>"._MB_NWS_BLIMIT."</td><td class='odd'><input type='text' name='options[0]' size='16' maxlength=3 value='".$options[0]."' /></td></tr>";
+    $form .= "<tr><td class='even'>"._MB_NWS_BPACE."</td><td class='odd'><input type='text' name='options[1]' size='16' maxlength=2 value='".$options[1]."' /></td></tr>";
   //---
   $form .= "<tr><td class='even'>"._MB_NWS_DIRECTION."</td><td class='odd'><select name='options[2]'>";
   $form .= "<option value='downup' ".(($options[2]=='downup')?" selected='selected'":"").">"._MB_NWS_UP."</option>\n";
@@ -129,29 +130,29 @@ function b_news_glider_edit( $options ){
   $form .= "<tr><td class='even'>"._MB_NWS_BWIDTH."</td><td class='odd'><input type='text' name='options[4]' size='16' maxlength=4 value='".$options[4]."' /></td></tr>";
   $form .= "<tr><td class='even'>"._MB_NWS_BHEIGHT."</td><td class='odd'><input type='text' name='options[5]' size='16' maxlength=4 value='".$options[5]."' /></td></tr>";
   //---
-	$form .= "<tr><td class='even'>"._MB_NWS_BACKGROUNDCOLOR."</td><td class='odd'><input type='text' name='options[6]' size='16' value='".$options[6]."' /></td></tr>";
-	$form .= "<tr><td class='even'>"._MB_NWS_BBORDER."</td><td class='odd'><input type='text' name='options[7]' size='16' maxlength=2 value='".$options[7]."' /></td></tr>";
-	$form .= "<tr><td class='even'>"._MB_NWS_BWRAPPERBCOLOR."</td><td class='odd'><input type='text' name='options[8]' size='16' value='".$options[8]."' /></td></tr>";
+    $form .= "<tr><td class='even'>"._MB_NWS_BACKGROUNDCOLOR."</td><td class='odd'><input type='text' name='options[6]' size='16' value='".$options[6]."' /></td></tr>";
+    $form .= "<tr><td class='even'>"._MB_NWS_BBORDER."</td><td class='odd'><input type='text' name='options[7]' size='16' maxlength=2 value='".$options[7]."' /></td></tr>";
+    $form .= "<tr><td class='even'>"._MB_NWS_BWRAPPERBCOLOR."</td><td class='odd'><input type='text' name='options[8]' size='16' value='".$options[8]."' /></td></tr>";
   
   //---
   $form .= "<tr><td class='even'>"._MB_NWS_BWRAPPERWIDTH."</td><td class='odd'><input type='text' name='options[9]' size='16' maxlength=4 value='".$options[9]."' /></td></tr>";
   //---
-	$form .= "<tr><td class='even'>"._MB_NWS_AUTOROTATE."</td><td class='odd'>";
+    $form .= "<tr><td class='even'>"._MB_NWS_AUTOROTATE."</td><td class='odd'>";
   $form .= "<input type='radio' name='options[10]' value='1'".(($options[10]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
-	$form .= "<input type='radio' name='options[10]' value='0'".(($options[10]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
+    $form .= "<input type='radio' name='options[10]' value='0'".(($options[10]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
   //---
   $form .= "<tr><td class='even'>"._MB_NWS_AUTORYCYLES."</td><td class='odd'><input type='text' name='options[11]' size='16' maxlength=4 value='".$options[11]."' /></td></tr>";
-	//---
-	$form .= "<tr><td class='even'>"._MB_NWS_SHOWDATE."</td><td class='odd'>";
-	$form .= "<input type='radio' name='options[12]' value='1'".(($options[12]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
-	$form .= "<input type='radio' name='options[12]' value='0'".(($options[12]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
-  //---  
-	$form .= "<tr><td class='even'>"._MB_NWS_SORT."</td><td class='odd'><select name='options[13]'>";
-	$form .= "<option value='RAND()' ".(($options[13]=='RAND()')?" selected='selected'":"").">"._MB_NWS_RANDOM."</option>\n";
-	$form .= "<option value='published' ".(($options[13]=='published')?" selected='selected'":"").">"._MB_NWS_DATE."</option>\n";
-	$form .= "<option value='counter' ".(($options[13]=='counter')?" selected='selected'":"").">"._MB_NWS_HITS."</option>\n";
-	$form .= "<option value='title' ".(($options[13]=='title')?" selected='selected'":"").">"._MB_NWS_NAME."</option>\n";
-	$form .= "</select></td></tr>\n";
+    //---
+    $form .= "<tr><td class='even'>"._MB_NWS_SHOWDATE."</td><td class='odd'>";
+    $form .= "<input type='radio' name='options[12]' value='1'".(($options[12]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
+    $form .= "<input type='radio' name='options[12]' value='0'".(($options[12]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
+  //---
+    $form .= "<tr><td class='even'>"._MB_NWS_SORT."</td><td class='odd'><select name='options[13]'>";
+    $form .= "<option value='RAND()' ".(($options[13]=='RAND()')?" selected='selected'":"").">"._MB_NWS_RANDOM."</option>\n";
+    $form .= "<option value='published' ".(($options[13]=='published')?" selected='selected'":"").">"._MB_NWS_DATE."</option>\n";
+    $form .= "<option value='counter' ".(($options[13]=='counter')?" selected='selected'":"").">"._MB_NWS_HITS."</option>\n";
+    $form .= "<option value='title' ".(($options[13]=='title')?" selected='selected'":"").">"._MB_NWS_NAME."</option>\n";
+    $form .= "</select></td></tr>\n";
   //---
   $form .= "<tr><td class='even'>"._MB_NWS_ORDER."</td><td class='odd'><select name='options[14]'>";
   $form .= "<option value='ASC' ".(($options[14]=='ASC')?" selected='selected'":"").">"._ASCENDING."</option>\n";
@@ -161,31 +162,31 @@ function b_news_glider_edit( $options ){
   $form .= "<tr><td class='even'>"._MB_NWS_CHARS."</td><td class='odd'><input type='text' name='options[15]' value='".$options[15]."'/></td></tr>";
   $form .= "<tr><td class='even'>"._MB_NWS_TEASER." </td><td class='odd'><input type='text' name='options[16]' value='".$options[16]."' /></td></tr>";
   //---
-	$form .= "<tr><td class='even'>"._MB_NWS_BUTTONSNAV."</td><td class='odd'>";
-	$form .= "<input type='radio' name='options[17]' value='1'".(($options[17]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
-	$form .= "<input type='radio' name='options[17]' value='0'".(($options[17]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
-	//---
-	$form .= "<tr><td class='even'>&nbsp; </td> <td class='odd'>&nbsp;</td></tr>";
-  //--- 
-	$form .= "<tr><td class='even'>"._MB_NWS_HTML."</td><td class='odd'>";
-	$form .= "<input type='radio' name='options[18]' value='1'".(($options[18]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
-	$form .= "<input type='radio' name='options[18]' value='0'".(($options[18]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
-  //---  
-	$form .= "<tr><td class='even'>"._MB_NWS_SMILEY."</td><td class='odd'>";
-	$form .= "<input type='radio' name='options[19]' value='1'".(($options[19]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
-	$form .= "<input type='radio' name='options[19]' value='0'".(($options[19]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
-  //---  
-	$form .= "<tr><td class='even'>"._MB_NWS_XCODE."</td><td class='odd'>";
-	$form .= "<input type='radio' name='options[20]' value='1'".(($options[20]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
-	$form .= "<input type='radio' name='options[20]' value='0'".(($options[20]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
-	//---
-	$form .= "<tr><td class='even'>"._MB_NWS_BR."</td><td class='odd'>";
-	$form .= "<input type='radio' name='options[21]' value='1'".(($options[21]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
-	$form .= "<input type='radio' name='options[21]' value='0'".(($options[21]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
-	//---
-	$form .= "<tr><td class='even'>"._MB_NWS_IMAGE."</td><td class='odd'>";
-	$form .= "<input type='radio' name='options[22]' value='1'".(($options[22]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
-	$form .= "<input type='radio' name='options[22]' value='0'".(($options[22]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
+    $form .= "<tr><td class='even'>"._MB_NWS_BUTTONSNAV."</td><td class='odd'>";
+    $form .= "<input type='radio' name='options[17]' value='1'".(($options[17]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
+    $form .= "<input type='radio' name='options[17]' value='0'".(($options[17]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
+    //---
+    $form .= "<tr><td class='even'>&nbsp; </td> <td class='odd'>&nbsp;</td></tr>";
+  //---
+    $form .= "<tr><td class='even'>"._MB_NWS_HTML."</td><td class='odd'>";
+    $form .= "<input type='radio' name='options[18]' value='1'".(($options[18]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
+    $form .= "<input type='radio' name='options[18]' value='0'".(($options[18]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
+  //---
+    $form .= "<tr><td class='even'>"._MB_NWS_SMILEY."</td><td class='odd'>";
+    $form .= "<input type='radio' name='options[19]' value='1'".(($options[19]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
+    $form .= "<input type='radio' name='options[19]' value='0'".(($options[19]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
+  //---
+    $form .= "<tr><td class='even'>"._MB_NWS_XCODE."</td><td class='odd'>";
+    $form .= "<input type='radio' name='options[20]' value='1'".(($options[20]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
+    $form .= "<input type='radio' name='options[20]' value='0'".(($options[20]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
+    //---
+    $form .= "<tr><td class='even'>"._MB_NWS_BR."</td><td class='odd'>";
+    $form .= "<input type='radio' name='options[21]' value='1'".(($options[21]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
+    $form .= "<input type='radio' name='options[21]' value='0'".(($options[21]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
+    //---
+    $form .= "<tr><td class='even'>"._MB_NWS_IMAGE."</td><td class='odd'>";
+    $form .= "<input type='radio' name='options[22]' value='1'".(($options[22]==1)?" checked='checked'":"")." />"._YES."&nbsp;";
+    $form .= "<input type='radio' name='options[22]' value='0'".(($options[22]==0)?" checked='checked'":"")." />"._NO."<br /></td></tr>";
   //--- get allowed topics
   $form .= "<tr><td class='even'>"._MB_NWS_TOPICS."</td><td class='odd'><select id=\"options[23]\" name=\"options[]\" multiple=\"multiple\">";
   $module_handler = xoops_gethandler("module");
@@ -206,9 +207,8 @@ function b_news_glider_edit( $options ){
       }
   }
   $form .= '</select></td></tr><br />';
-	$form .= "</table>";
-	//-------
-	
-	return $form;
+    $form .= "</table>";
+    //-------
+    
+    return $form;
 }
-?>

@@ -31,7 +31,6 @@ foreach( $group_defs as $def ) {
     if ( strstr( $def , '_AM_NWS_ACCESSRIGHTS' ) || strstr( $def , '_AM_NWS_ACTIVERIGHTS' ) ) eval( $def ) ;
 }
 
-
 // check $xoopsModule
 if ( ! is_object( $xoopsModule ) ) redirect_header( XOOPS_URL.'/user.php' , 1 , _NOPERM ) ;
 
@@ -40,7 +39,7 @@ $module_handler =& xoops_gethandler('module');
 if ( ! empty( $_GET['dirname'] ) ) {
     $target_module =& $module_handler->getByDirname($_GET['dirname']);
 }/* else if( ! empty( $_GET['mid'] ) ) {
-	$target_module =& $module_handler->get( intval( $_GET['mid'] ) );
+    $target_module =& $module_handler->get( intval( $_GET['mid'] ) );
 }*/
 
 if ( ! empty( $target_module ) && is_object( $target_module ) ) {
@@ -75,7 +74,6 @@ while ( list( $bid , $bname , $show_func , $func_file , $template ) = $db->fetch
                            'template' => $template
                        ) ;
 }
-
 
 // for 2.2
 function list_blockinstances() {
@@ -294,7 +292,6 @@ function list_blockinstances() {
     </form>\n" ;
 }
 
-
 // for 2.2
 function list_groups2() {
     global $target_mid , $target_mname , $xoopsDB ;
@@ -316,8 +313,6 @@ function list_groups2() {
     }
     echo $form->render() ;
 }
-
-
 
 if ( ! empty( $_POST['submit'] ) ) {
     if ( ! $xoopsGTicket->check( true , 'myblocksadmin' ) ) {
@@ -343,6 +338,3 @@ if ( ! empty( $block_arr ) ) {
 
 list_groups2() ;
 xoops_cp_footer() ;
-
-
-?>

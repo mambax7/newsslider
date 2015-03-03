@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * $Id: blocks.php v 1.0 11 Jan 2012 Yerres Exp $
  * Module: newsslider
@@ -65,7 +65,7 @@ define("_MB_NWS_SLIDETOP", "boven");
 define("_MB_NWS_SLIDEBOTTOM", "beneden");
 // bxSlider
 define("_MB_NWS_IMGWIDTH", "Breedte van afbeelding in procenten. (in relatie met de breedte van het blok)");
-define("_MB_NWS_FLOATIMG", "Float Image");	
+define("_MB_NWS_FLOATIMG", "Float Image");
 define("_MB_NWS_EFFECT", "Kies effect.<br/> voor Tickermode dient ook de Tickersnelheid ingesteld te worden");
 define("_MB_NWS_FADE", "Fade");
 define("_MB_NWS_VERTICAL", "Verticaal");
@@ -78,4 +78,3 @@ define("_MB_NWS_JUSTIFY", "Verantwoorden");
 define("_MB_NWS_TOPICT", "Onderwerpen tonen?");
 define("_MB_NWS_CAPTIONS", "Afbeeldingstekstn tonen?");
 define("_MB_NWS_STRIPTAGS", "Clear HTML tags ?<div style=\" font-size: smaller; align='left'\">Check here whether HTML-tags shall be cleared out of the text.</div>");
-?>

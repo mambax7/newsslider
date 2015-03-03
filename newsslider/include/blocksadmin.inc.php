@@ -232,7 +232,6 @@ if ( $op == 'order' ) {
     exit();
 }
 
-
 if ( $op == 'order2' ) {
     if ( ! $xoopsGTicket->check( true , 'myblocksadmin' ) ) {
         redirect_header(XOOPS_URL.'/',3,$xoopsGTicket->getErrors());
@@ -282,7 +281,6 @@ if ( $op == 'order2' ) {
     //exit();
 }
 
-
 if ( $op == 'update' ) {
     //if ( !admin_refcheck("/modules/$admin_mydirname/admin/") ) {
     //  exit('Invalid Referer');
@@ -298,7 +296,6 @@ if ( $op == 'update' ) {
     $msg = myblocksadmin_update_block($_POST['bid'], $_POST['bside'], $_POST['bweight'], $_POST['bvisible'], $_POST['btitle'], $bcontent, $bctype, $bcachetime, $bmodule, $options); // GIJ !
     redirect_header('myblocksadmin.php',1,$msg);
 }
-
 
 if ( $op == 'delete_ok' ) {
     //if ( !admin_refcheck("/modules/$admin_mydirname/admin/") ) {
@@ -374,7 +371,6 @@ if ( $op == 'edit' ) {
     exit();
 }
 
-
 if ($op == 'clone') {
     xoops_cp_header();
     $myblock = new XoopsBlock($bid);
@@ -395,7 +391,6 @@ if ($op == 'clone') {
     xoops_cp_footer();
     exit();
 }
-
 
 if ($op == 'clone_ok') {
     // Ticket Check
@@ -535,7 +530,6 @@ function myblocksadmin_update_block($bid, $bside, $bweight, $bvisible, $btitle, 
     return $msg ; // GIJ +
 }
 
-
 // update block instance for 2.2
 function myblocksadmin_update_blockinstance($id, $bside, $bweight, $bvisible, $btitle, $bcontent, $bctype, $bcachetime, $bmodule, $options=array(), $bid=null) {
     global $xoopsDB ;
@@ -571,12 +565,13 @@ function myblocksadmin_update_blockinstance($id, $bside, $bweight, $bvisible, $b
             $pageid = $page[1];
             $GLOBALS['xoopsDB']->query("INSERT INTO ".$GLOBALS['xoopsDB']->prefix('block_module_link')." VALUES (".$instance->getVar('instanceid').", ".intval($mid).", ".intval($pageid).")");
         }
+
         return _MD_AM_DBUPDATED;
     }
+
     return 'Failed update of block instance. ID:'.$id;
 
 }
 
 // TODO  edit2, delete2, customblocks
-
-?>
+;

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * $Id: blocks.php v 1.0 11 Jan 2012 Yerres Exp $
  * Module: newsslider
@@ -62,7 +62,7 @@ define("_MB_NWS_SLIDETOP", "Oben");
 define("_MB_NWS_SLIDEBOTTOM", "Unten");
 // bxSlider
 define("_MB_NWS_IMGWIDTH", "Breite des Bildes in Prozent. (die Bilder werden auf x% der Größe des Blocks gestreckt)");
-define("_MB_NWS_FLOATIMG", "Textumfluss um das Bild");	
+define("_MB_NWS_FLOATIMG", "Textumfluss um das Bild");
 define("_MB_NWS_EFFECT", "Effekt auswählen.<br/> Bei Tickermodus muss die Tickergeschwindigkeit mitangegeben werden");
 define("_MB_NWS_FADE", "Fade");
 define("_MB_NWS_VERTICAL", "Vertikal");
@@ -76,4 +76,3 @@ define("_MB_NWS_TOPICT", "Themen anzeigen?");
 define("_MB_NWS_CAPTIONS", "Bild Untertitel anzeigen?");
 // RC
 define("_MB_NWS_JQUERY", "jQuery im Block Laden?<div style=\" font-size: smaller; align='left'\">Falls jQuery bereits im Theme geladen wird, braucht es nicht im Block geladen zu werden.</div>");
-?>

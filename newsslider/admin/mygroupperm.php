@@ -14,10 +14,9 @@ function myDeleteByModule($DB, $gperm_modid, $gperm_name = null, $gperm_itemid =
     if (!$result = $DB->query($sql)) {
         return false;
     }
+
     return true;
 }
-
-
 
 // include '../../../include/cp_header.php'; GIJ
 $modid = isset($_POST['modid']) ? intval($_POST['modid']) : 1;
@@ -73,5 +72,3 @@ if (is_array($_POST['perms']) && !empty($_POST['perms'])) {
         }
     }
 }
-
-?>

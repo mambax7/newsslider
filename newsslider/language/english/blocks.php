@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * $Id: blocks.php v 1.0 11 Jan 2012 Yerres Exp $
  * Module: newsslider
@@ -62,7 +62,7 @@ define("_MB_NWS_SLIDETOP", "top");
 define("_MB_NWS_SLIDEBOTTOM", "bottom");
 // bxSlider
 define("_MB_NWS_IMGWIDTH", "Width of image in Percent. (in relation to the blocks' width)");
-define("_MB_NWS_FLOATIMG", "Float Image");	
+define("_MB_NWS_FLOATIMG", "Float Image");
 define("_MB_NWS_EFFECT", "Choose Effect.<br/> Tickermode requires Tickerspeed to be set as well");
 define("_MB_NWS_FADE", "Fade");
 define("_MB_NWS_VERTICAL", "Vertical");
@@ -77,4 +77,3 @@ define("_MB_NWS_CAPTIONS", "Show image captions?");
 // RC
 define("_MB_NWS_JQUERY", "Load jQuery ?<div style=\" font-size: smaller; align='left'\">If jQuery is already being loaded in the theme, you can disable it here.</div>");
 define("_MB_NWS_STRIPTAGS", "Clear HTML tags ?<div style=\" font-size: smaller; align='left'\">Check here whether HTML-tags shall be cleared out of the text.</div>");
-?>

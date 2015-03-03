@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * $Id: admin.php v 1.0 11 Jan 2012 Yerres Exp $
  * Module: newsslider
@@ -13,5 +13,3 @@ define("_AM_NWS_TAGS", "Newsslider");
 define("_AM_NWS_INDEX", "Index");
 
 define("_AM_NWS_BADMIN", "Moduladmin");
-
-?>

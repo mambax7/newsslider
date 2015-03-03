@@ -11,7 +11,6 @@ include("../../../mainfile.php");
 include '../../../include/cp_header.php';
 global $xoopsModule, $xoopsConfig;
 
-
 include_once XOOPS_ROOT_PATH."/modules/".$xoopsModule->dirname()."/admin/functions.php";
 
 $myts =& MyTextSanitizer::getInstance();
@@ -26,5 +25,3 @@ if ( is_object( $xoopsUser)  ) {
     redirect_header(XOOPS_URL."/",1,_NOPERM);
     exit();
 }
-
-?>

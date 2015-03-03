@@ -52,5 +52,3 @@ if ( substr( XOOPS_VERSION , 6 , 3 ) < 2.1 ) {
     }
 
 }
-
-?>

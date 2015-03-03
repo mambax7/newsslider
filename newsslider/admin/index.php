@@ -14,5 +14,3 @@ nws_adminmenu (0,_CPHOME);
 echo "<P>"._AM_NWS_INTRO."</P><br/>";
 
 xoops_cp_footer();
-
-?>

@@ -164,6 +164,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
                 } else {
                     // failed
                     $this->clear() ;
+
                     return false ;
                 }
             } else {
@@ -230,15 +231,14 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
                     $form .= '<input type="hidden" name="'.$key_name.'['.htmlspecialchars($key,ENT_QUOTES).']" value="'.htmlspecialchars($val,ENT_QUOTES).'" />'."\n" ;
                 }
             }
+
             return array( $table , $form ) ;
         }
-
 
         // clear all stubs
         function clear() {
             $_SESSION['XOOPS_G_STUBS'] = array() ;
         }
-
 
         // Ticket Using
         function using() {
@@ -248,7 +248,6 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
                 return false;
             }
         }
-
 
         // return errors
         function getErrors( $ashtml = true ) {
@@ -260,6 +259,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
             } else {
                 $ret = $this->_errors ;
             }
+
             return $ret ;
         }
 
@@ -287,6 +287,7 @@ if ( ! function_exists( 'admin_refcheck' ) ) {
         if ( strpos($ref, $cr) !== 0 ) {
             return false;
         }
+
         return true;
     }
 
@@ -298,9 +299,6 @@ function GTicket_ErrorHandler4FindOutput($errNo, $errStr, $errFile, $errLine) {
     } else {
         echo "Irregular output! check language files etc." ;
     }
+
     return ;
 }
-
-
-
-?>

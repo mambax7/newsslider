@@ -90,8 +90,8 @@ class MyXoopsGroupPermForm extends XoopsForm {
      * Adds an item to which permission will be assigned
      *
      * @param string $itemName
-     * @param int $itemId
-     * @param int $itemParent
+     * @param int    $itemId
+     * @param int    $itemParent
      * @access public
      */
     function addItem($itemId, $itemName, $itemParent = 0) {
@@ -113,7 +113,7 @@ class MyXoopsGroupPermForm extends XoopsForm {
     /**
      * Loads all child ids for an item to be used in javascript
      *
-     * @param int $itemId
+     * @param int   $itemId
      * @param array $childIds
      * @access private
      */
@@ -198,6 +198,7 @@ class MyXoopsGroupPermForm extends XoopsForm {
             }
         }
         $ret .= "</table>".$xoopsGTicket->getTicketHtml(__LINE__ , 1800 , 'myblocksadmin' )."</form>";
+
         return $ret;
     }
 }
@@ -324,6 +325,7 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement {
             }
         }
         $ret .= '</tr></table>';
+
         return $ret;
     }
 
@@ -331,9 +333,9 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement {
      * Renders checkbox options for an item tree
      *
      * @param string $tree
-     * @param array $option
+     * @param array  $option
      * @param string $prefix
-     * @param array $parentIds
+     * @param array  $parentIds
      * @access private
      */
     function _renderOptionTree(&$tree, $option, $prefix, $parentIds = array()) {
@@ -364,4 +366,3 @@ class MyXoopsGroupFormCheckBox extends XoopsFormElement {
         }
     }
 }
-?>

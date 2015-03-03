@@ -27,7 +27,7 @@ if ( is_object( $xoopsUser)  ) {
  */
 
 function nws_adminmenu($currentoption = 0, $breadcrumb = '') {
-	echo "
+    echo "
     <style type='text/css'>
     #buttontop { float:left; width:100%; background: #DAE0D2; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
     #buttonbar { float:left; width:100%; background: #DAE0D2 url('" . XOOPS_URL . "/modules/newsslider/images/bg.gif') repeat-x left bottom; font-size: 12px; line-height:normal; border-left: 1px solid black; border-right: 1px solid black; margin-bottom: 12px; }
@@ -48,42 +48,41 @@ function nws_adminmenu($currentoption = 0, $breadcrumb = '') {
     ";
   
     
-	global $xoopsModule, $xoopsConfig;
-	$myts = &MyTextSanitizer::getInstance();
+    global $xoopsModule, $xoopsConfig;
+    $myts = &MyTextSanitizer::getInstance();
 
-	$tblColors = Array_Fill(0,8,'');
-	$tblColors[$currentoption] = 'current';
+    $tblColors = Array_Fill(0,8,'');
+    $tblColors[$currentoption] = 'current';
 
-	if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/language/' . $xoopsConfig['language'] . '/modinfo.php')) {
-		include_once XOOPS_ROOT_PATH . '/modules/newsslider/language/' . $xoopsConfig['language'] . '/modinfo.php';
-	} else {
-		include_once XOOPS_ROOT_PATH . '/modules/newsslider/language/english/modinfo.php';
-	}
+    if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/language/' . $xoopsConfig['language'] . '/modinfo.php')) {
+        include_once XOOPS_ROOT_PATH . '/modules/newsslider/language/' . $xoopsConfig['language'] . '/modinfo.php';
+    } else {
+        include_once XOOPS_ROOT_PATH . '/modules/newsslider/language/english/modinfo.php';
+    }
 
-	include 'menu.php';
+    include 'menu.php';
 
-	echo '<div id="buttontop">';
-	echo '<table style="width: 100%; padding: 0;" cellspacing="0"><tr>';
-	echo '<td style="font-size: 10px; text-align: left; color: #2F5376; padding: 0 6px; line-height: 18px;">';
-	for( $i=0; $i<count($headermenu); $i++ ){
-		echo '<a class="nobutton" href="' . $headermenu[$i]['link'] .'">' . $headermenu[$i]['title'] . '</a> ';
-		if ($i < count($headermenu)-1) {
-			echo "| ";
-		}
-	}
-	echo '</td>';
-	echo '<td style="font-size: 12px; text-align: right; color: #2F5376; padding: 0 6px; line-height: 18px; font-weight: bold;">' . $breadcrumb . '</td>';
-	echo '</tr></table>';
-	echo '</div>';
+    echo '<div id="buttontop">';
+    echo '<table style="width: 100%; padding: 0;" cellspacing="0"><tr>';
+    echo '<td style="font-size: 10px; text-align: left; color: #2F5376; padding: 0 6px; line-height: 18px;">';
+    for( $i=0; $i<count($headermenu); $i++ ){
+        echo '<a class="nobutton" href="' . $headermenu[$i]['link'] .'">' . $headermenu[$i]['title'] . '</a> ';
+        if ($i < count($headermenu)-1) {
+            echo "| ";
+        }
+    }
+    echo '</td>';
+    echo '<td style="font-size: 12px; text-align: right; color: #2F5376; padding: 0 6px; line-height: 18px; font-weight: bold;">' . $breadcrumb . '</td>';
+    echo '</tr></table>';
+    echo '</div>';
 
-	echo '<div id="buttonbar">';
-	echo "<ul>";
+    echo '<div id="buttonbar">';
+    echo "<ul>";
 
-	for( $i=0; $i<count($adminmenu); $i++ ){
-		echo '<li id="' . $tblColors[$i] . '"><a href="' . XOOPS_URL . '/modules/newsslider/' . $adminmenu[$i]['link'] . '"><span>' . $adminmenu[$i]['title'] . '</span></a></li>';
-	}
-	echo '</ul></div>';
+    for( $i=0; $i<count($adminmenu); $i++ ){
+        echo '<li id="' . $tblColors[$i] . '"><a href="' . XOOPS_URL . '/modules/newsslider/' . $adminmenu[$i]['link'] . '"><span>' . $adminmenu[$i]['title'] . '</span></a></li>';
+    }
+    echo '</ul></div>';
   echo '<div style="float: left; width: 100%; text-align: center; margin: 0px; padding: 0px">';
   echo '</div>';
 }
-?>
