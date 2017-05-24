@@ -121,7 +121,7 @@ if (isset($_POST['previewblock'])) {
         $block['name'] = $myblock->getVar('name');
     }
 
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
     $myblock->setVar('title', $myts->stripSlashesGPC($btitle));
     $myblock->setVar('content', $myts->stripSlashesGPC($bcontent));
 //  $dummyhtml = '<html><head><meta http-equiv="content-type" content="text/html; charset='._CHARSET.'" /><meta http-equiv="content-language" content="'._LANGCODE.'" /><title>'.$xoopsConfig['sitename'].'</title><link rel="stylesheet" type="text/css" media="all" href="'.getcss($xoopsConfig['theme_set']).'" /></head><body><table><tr><th>'.$myblock->getVar('title').'</th></tr><tr><td>'.$myblock->getContent('S', $bctype).'</td></tr></table></body></html>';
@@ -352,7 +352,7 @@ if ( $op == 'edit' ) {
     // edit_block($bid); GIJ imported from blocksadmin.php
     $myblock = new XoopsBlock($bid);
 
-    $db =& Database::getInstance();
+    $db = Database::getInstance();
     $sql = 'SELECT module_id FROM '.$db->prefix('block_module_link').' WHERE block_id='.intval($bid);
     $result = $db->query($sql);
     $modules = array();
@@ -375,7 +375,7 @@ if ($op == 'clone') {
     xoops_cp_header();
     $myblock = new XoopsBlock($bid);
 
-    $db =& Database::getInstance();
+    $db = Database::getInstance();
     $sql = 'SELECT module_id FROM '.$db->prefix('block_module_link').' WHERE block_id='.intval($bid);
     $result = $db->query($sql);
     $modules = array();
@@ -418,7 +418,7 @@ if ($op == 'clone_ok') {
     }
     $cblock->setNew();
 
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
     $cblock->setVar('side', $_POST['bside']);
     $cblock->setVar('weight', $_POST['bweight']);
     $cblock->setVar('visible', $_POST['bvisible']);
@@ -441,7 +441,7 @@ if ($op == 'clone_ok') {
         exit();
     }
 
-    $db =& Database::getInstance();
+    $db = Database::getInstance();
     $bmodule = (isset($_POST['bmodule']) && is_array($_POST['bmodule'])) ? $_POST['bmodule'] : array(-1) ; // GIJ +
     foreach( $bmodule as $bmid ) {
         $sql = 'INSERT INTO '.$db->prefix('block_module_link').' (block_id, module_id) VALUES ('.$newid.', '.$bmid.')';
@@ -499,7 +499,7 @@ function myblocksadmin_update_block($bid, $bside, $bweight, $bvisible, $btitle, 
     }
     $msg = _AM_DBUPDATED;
     if ($myblock->store() != false) {
-        $db =& Database::getInstance();
+        $db = Database::getInstance();
         $sql = sprintf("DELETE FROM %s WHERE block_id = %u", $db->prefix('block_module_link'), $bid);
         $db->query($sql);
         foreach ($bmodule as $bmid) {
