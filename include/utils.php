@@ -12,7 +12,7 @@
 /**
  * News Utils class
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      Hossein Azizabadi (AKA Voltan)
  * @version     $Id$
@@ -91,7 +91,7 @@ class NewsUtils {
 
     /**
      * Resize a Picture to some given dimensions (using the wideImage library)
-     * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+     * @copyright   XOOPS Project (https://xoops.org)
      * @license     GNU GPL 2 (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
      * @author      Hervé Thouzard (ttp://www.instant-zero.com)
      *

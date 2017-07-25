@@ -40,7 +40,7 @@ Pausescroller, DHTML Ticker script and Featured Content Glider : http://DynamicD
 Featured Content Slider : Web Developer Plus : http://webdeveloperplus.com/jquery/featured-content-slider-using-jquery-ui/
 S3Slider : http://www.serie3.info/s3slider/
 jQuery bxSlider v3.0 : http://bxslider.com/
-News Module : Herve http://xoops.org/
+News Module : Herve https://xoops.org/
 Maitsco : http://www.maitsco.com/english
 jlmZone : http://www.jlmzone.com/modules/news/
 
