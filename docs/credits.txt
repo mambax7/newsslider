@@ -1,0 +1,20 @@
+CREDITS
+=====================
+
+
+Originally developed by Yerres
+
+Version 1.3 was updated to XOOPS 2.5.0 Standard GUI by Michael Beck (Mamba)
+
+
+Credits and Thanks
+-----------------------------------------------------------------------
+
+OpenClipart : http://www.openclipart.org
+Pausescroller, DHTML Ticker script and Featured Content Glider : http://DynamicDrive.com
+Featured Content Slider : Web Developer Plus : http://webdeveloperplus.com/jquery/featured-content-slider-using-jquery-ui/
+S3Slider : http://www.serie3.info/s3slider/
+jQuery bxSlider v3.0 : http://bxslider.com/
+News Module : Herve https://xoops.org/
+Maitsco : http://www.maitsco.com/english
+jlmZone : http://www.jlmzone.com/modules/news/
