@@ -14,7 +14,7 @@ if (false !== strpos(XOOPS_VERSION, 'XOOPS 2.2')) {
 
 require_once __DIR__ . '/mygrouppermform.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
-require_once __DIR__ . '/../include/gtickets.php';// GIJ
+//require_once __DIR__ . '/../include/gtickets.php';// GIJ
 
 $xoops_system_path = XOOPS_ROOT_PATH . '/modules/system';
 

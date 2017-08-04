@@ -26,23 +26,20 @@
 //  ------------------------------------------------------------------------ //
 defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
 
-$modversion['version']       = 1.3;
-$modversion['module_status'] = 'Beta 1';
-$modversion['release_date']  = '2014/04/23';
-$modversion['name']          = _MI_NWS_NAME;
-$modversion['description']   = _MI_NWS_DESC;
-$modversion['author']        = 'Yerres';
-$modversion['help']          = 'readme.txt';
-$modversion['official']      = 0; //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
-$modversion['image']         = 'assets/images/logoModule.png';
-$modversion['credits']       = 'see readme';
-$modversion['dirname']       = basename(__DIR__);
-$modversion['help']          = 'page=help';
-$modversion['license']       = 'GNU GPL 2.0 or later';
-$modversion['license_url']   = 'www.gnu.org/licenses/gpl-2.0.html';
-//$modversion['dirmoduleadmin']      = '/Frameworks/moduleclasses/moduleadmin';
-//$modversion['icons16']             = '../../Frameworks/moduleclasses/icons/16';
-//$modversion['icons32']             = '../../Frameworks/moduleclasses/icons/32';
+$modversion['version']             = 1.3;
+$modversion['module_status']       = 'Beta 1';
+$modversion['release_date']        = '2017/04/23';
+$modversion['name']                = _MI_NWS_NAME;
+$modversion['description']         = _MI_NWS_DESC;
+$modversion['author']              = 'Yerres';
+$modversion['help']                = 'readme.txt';
+$modversion['official']            = 0; //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
+$modversion['image']               = 'assets/images/logoModule.png';
+$modversion['credits']             = 'see readme';
+$modversion['dirname']             = basename(__DIR__);
+$modversion['help']                = 'page=help';
+$modversion['license']             = 'GNU GPL 2.0 or later';
+$modversion['license_url']         = 'www.gnu.org/licenses/gpl-2.0.html';
 $modversion['modicons16']          = 'assets/images/icons/16';
 $modversion['modicons32']          = 'assets/images/icons/32';
 $modversion['module_website_url']  = 'www.xoops.org';
@@ -58,6 +55,14 @@ $modversion['hasAdmin']    = 1;
 $modversion['system_menu'] = 1;
 $modversion['adminindex']  = 'admin/index.php';
 $modversion['adminmenu']   = 'admin/menu.php';
+
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = array(
+    ['name' => _MI_NWS_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_NWS_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_NWS_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_NWS_SUPPORT, 'link' => 'page=support'],
+);
 
 // Blocks
 $modversion['blocks']   = array();
