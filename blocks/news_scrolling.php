@@ -8,14 +8,14 @@
  * Licence : GPL
  *
  */
-defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 function b_scrolling_news_show($options)
 {
     global $xoopsDB, $xoopsUser;
     $myts = MyTextSanitizer:: getInstance();
 
-    $block = array();
+    $block = [];
     /** @var XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $module        = $moduleHandler->getByDirname('news');
@@ -68,7 +68,7 @@ function b_scrolling_news_show($options)
 
     $i = 1;
     foreach ($stories as $story) {
-        $news = array();
+        $news = [];
 
         $title = $story->title();
         if (strlen($title) > $options[9]) {

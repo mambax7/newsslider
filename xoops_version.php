@@ -24,7 +24,7 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 $modversion['version']             = 1.3;
 $modversion['module_status']       = 'Beta 1';
@@ -47,7 +47,7 @@ $modversion['module_website_name'] = 'XOOPS';
 $modversion['min_php']             = '5.5';
 $modversion['min_xoops']           = '2.5.9';
 $modversion['min_admin']           = '1.2';
-$modversion['min_db']              = array('mysql' => '5.5');
+$modversion['min_db']              = ['mysql' => '5.5'];
 
 // Sql
 // Admin things
@@ -57,16 +57,16 @@ $modversion['adminindex']  = 'admin/index.php';
 $modversion['adminmenu']   = 'admin/menu.php';
 
 // ------------------- Help files ------------------- //
-$modversion['helpsection'] = array(
+$modversion['helpsection'] = [
     ['name' => _MI_NWS_OVERVIEW, 'link' => 'page=help'],
     ['name' => _MI_NWS_DISCLAIMER, 'link' => 'page=disclaimer'],
     ['name' => _MI_NWS_LICENSE, 'link' => 'page=license'],
     ['name' => _MI_NWS_SUPPORT, 'link' => 'page=support'],
-);
+];
 
 // Blocks
-$modversion['blocks']   = array();
-$modversion['blocks'][] = array(
+$modversion['blocks']   = [];
+$modversion['blocks'][] = [
     'file'        => 'news_scrolling.php',
     'name'        => _MI_NWS_BNAME1,
     'description' => 'Shows scrolling News',
@@ -75,8 +75,8 @@ $modversion['blocks'][] = array(
     'options'     => '5|3||up|0|1|0|published|DESC|50|250|1|0|0|0|0|0',
     'template'    => 'news_scrolling.tpl',
     'can_clone'   => true,
-);
-$modversion['blocks'][] = array(
+];
+$modversion['blocks'][] = [
     'file'        => 'news_glider.php',
     'name'        => _MI_NWS_BNAME2,
     'description' => 'Shows News Featured Content Glider',
@@ -85,8 +85,8 @@ $modversion['blocks'][] = array(
     'options'     => '5|5|downup|0|250|160||||230|1|0|1|published|DESC|35|175|1|0|0|0|0|0|0',
     'template'    => 'news_glider.tpl',
     'can_clone'   => true,
-);
-$modversion['blocks'][] = array(
+];
+$modversion['blocks'][] = [
     'file'        => 'news_feature.php',
     'name'        => _MI_NWS_BNAME3,
     'description' => 'Shows News Featured Content Slider',
@@ -95,8 +95,8 @@ $modversion['blocks'][] = array(
     'options'     => '4|5|0|0|published|DESC|35|175|1|0|0|0|0|0',
     'template'    => 'news_feature.tpl',
     'can_clone'   => true,
-);
-$modversion['blocks'][] = array(
+];
+$modversion['blocks'][] = [
     'file'        => 'news_s3slider.php',
     'name'        => _MI_NWS_BNAME4,
     'description' => 'Shows XOOPS S3 Slider',
@@ -105,8 +105,8 @@ $modversion['blocks'][] = array(
     'options'     => '5|3|0|0|published|bottom|50|175|1|0|0|0|0|0',
     'template'    => 'news_s3slider.tpl',
     'can_clone'   => true,
-);
-$modversion['blocks'][] = array(
+];
+$modversion['blocks'][] = [
     'file'        => 'news_bxslider.php',
     'name'        => _MI_NWS_BNAME5,
     'description' => 'Shows bx Slider',
@@ -115,7 +115,7 @@ $modversion['blocks'][] = array(
     'options'     => '5|5|0|50|0|1|0|published|2|0|25|50|250|1|0|0|0|0|0|0|0|0',
     'template'    => 'news_bxslider.tpl',
     'can_clone'   => true,
-);
+];
 // other
 $modversion['hasMain']         = 0;
 $modversion['hasSearch']       = 0;
