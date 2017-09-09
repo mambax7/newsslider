@@ -24,15 +24,15 @@ $moduleHelper->loadLanguage('modinfo');
 
 $adminmenu              = [];
 $i                      = 0;
-$adminmenu[$i]['title'] = _AM_MODULEADMIN_HOME;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
+'title' =>  _AM_MODULEADMIN_HOME,
+'link' =>  'admin/index.php',
+'icon' =>  $pathIcon32 . '/home.png',
 ++$i;
-$adminmenu[$i]['title'] = _MI_NWS_MENU;
-$adminmenu[$i]['link']  = '../../modules/system/admin.php?fct=blocksadmin&op=list&filter=1&selgen=' . $xoopsModule->getVar('mid') . '&selmod=-2&selgrp=-1&selvis=-1';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+'title' =>  _MI_NWS_MENU,
+'link' => -1',
+'icon' =>  $pathIcon32 . '/manage.png',
 
 ++$i;
-$adminmenu[$i]['title'] = _AM_MODULEADMIN_ABOUT;
-$adminmenu[$i]['link']  = 'admin/about.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
+'title' =>  _AM_MODULEADMIN_ABOUT,
+'link' =>  'admin/about.php',
+'icon' =>  $pathIcon32 . '/about.png',
