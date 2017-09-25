@@ -123,8 +123,8 @@ $modversion['hasComments']     = 0;
 $modversion['hasNotification'] = 0;
 
 // On Update X2.0
-if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && $_POST['fct'] == 'modulesadmin'
-    && $_POST['op'] == 'update_ok'
+if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && 'modulesadmin' == $_POST['fct']
+    && 'update_ok' == $_POST['op']
     && $_POST['dirname'] == $modversion['dirname']) {
     include __DIR__ . '/include/onupdate.inc.php';
 }

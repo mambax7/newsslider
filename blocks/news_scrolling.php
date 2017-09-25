@@ -28,11 +28,11 @@ function b_scrolling_news_show($options)
     }
     require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
     require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
-    $block['speed']       = isset($options[1]) && $options[1] != '' ? $options[1] : '3';
-    $block['bgcolor']     = isset($options[2]) && $options[2] != '' ? $options[2] : '#FFFFFF';
+    $block['speed']       = isset($options[1]) && '' != $options[1] ? $options[1] : '3';
+    $block['bgcolor']     = isset($options[2]) && '' != $options[2] ? $options[2] : '#FFFFFF';
     $block['direction']   = $options[3];
-    $block['alternate']   = ($options[4] == 1) ? 1 : 0;
-    $block['includedate'] = ($options[5] == 1) ? 1 : 0;
+    $block['alternate']   = (1 == $options[4]) ? 1 : 0;
+    $block['includedate'] = (1 == $options[5]) ? 1 : 0;
     $block['style']       = $options[6];
     $uniqueid             = substr(md5(uniqid(rand())), 25);
     $block['divid']       = $uniqueid;
@@ -45,24 +45,24 @@ function b_scrolling_news_show($options)
         $dateformat = news_getmoduleoption('dateformat');
         $infotips   = news_getmoduleoption('infotips');
         //if($dateformat == '') $dateformat = 'M d, Y g:i A'; //Int. Date
-        if ($dateformat == '') {
+        if ('' == $dateformat) {
             $dateformat = 'd. M. Y G:i';
         }
     } else {
-        $restricted = isset($newsConfig['restrictindex']) && $newsConfig['restrictindex'] == 1 ? 1 : 0;
+        $restricted = isset($newsConfig['restrictindex']) && 1 == $newsConfig['restrictindex'] ? 1 : 0;
         $dateformat = isset($newsConfig['dateformat'])
-                      && $newsConfig['dateformat'] != '' ? $newsConfig['dateformat'] : 'd. M. Y G:i';
+                      && '' != $newsConfig['dateformat'] ? $newsConfig['dateformat'] : 'd. M. Y G:i';
         $infotips   = '0';
     }
 
-    if ($options[16] == 0) {
+    if (0 == $options[16]) {
         $stories = $tmpstory->getAllPublished($options[0], 0, $restricted, 0, 1, $options[7]);
     } else {
         $topics  = array_slice($options, 16);
         $stories = $tmpstory->getAllPublished($options[0], 0, $restricted, 0, 1, $options[7]);
     }
     unset($tmpstory);
-    if (count($stories) == 0) {
+    if (0 == count($stories)) {
         return '';
     }
 
@@ -84,13 +84,13 @@ function b_scrolling_news_show($options)
         $news['topic_title'] = $story->topic_title();
 
         if ($options[10] > 0) {
-            $html = $story->nohtml() == 1 ? 0 : 1;
+            $html = 1 == $story->nohtml() ? 0 : 1;
             //$html = $options[11] == 1 ? 0 : 1;
-            $clearhtml = $options[8] == 1 ? 0 : 1;
-            $smiley    = $options[12] == 1 ? 0 : 1;
-            $xcode     = $options[13] == 1 ? 0 : 1;
-            $image     = $options[14] == 1 ? 0 : 1;
-            $br        = $options[15] == 1 ? 0 : 1;
+            $clearhtml = 1 == $options[8] ? 0 : 1;
+            $smiley    = 1 == $options[12] ? 0 : 1;
+            $xcode     = 1 == $options[13] ? 0 : 1;
+            $image     = 1 == $options[14] ? 0 : 1;
+            $br        = 1 == $options[15] ? 0 : 1;
             //--- for News versions prior to 1.60
             if ($module->getVar('version') <= 160) {
                 $news['teaser'] = xoops_substr($myts->displayTarea(strip_tags($story->hometext)), 0, $options[10] + 3);
@@ -132,34 +132,34 @@ function b_scrolling_news_edit($options)
     $form .= "<tr><td class='even'>" . _MB_NWS_BACKGROUNDCOLOR . "</td><td class='odd'><input type='text' name='options[2]' size='16'  value='" . $options[2] . "'></td></tr>";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_DIRECTION . "</td><td class='odd'><select name='options[3]'>";
-    $form .= "<option value='up' " . (($options[3] == 'up') ? ' selected' : '') . '>' . _MB_NWS_UP . "</option>\n";
-    $form .= "<option value='down' " . (($options[3] == 'down') ? ' selected' : '') . '>' . _MB_NWS_DOWN . "</option>\n";
+    $form .= "<option value='up' " . (('up' == $options[3]) ? ' selected' : '') . '>' . _MB_NWS_UP . "</option>\n";
+    $form .= "<option value='down' " . (('down' == $options[3]) ? ' selected' : '') . '>' . _MB_NWS_DOWN . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_ALTERNATE . "</td><td class='odd'>";
-    $form .= "<input type='radio' name='options[4]' value='1'" . (($options[4] == 1) ? ' checked' : '') . '>' . _YES . '&nbsp;';
-    $form .= "<input type='radio' name='options[4]' value='0'" . (($options[4] == 0) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
+    $form .= "<input type='radio' name='options[4]' value='1'" . ((1 == $options[4]) ? ' checked' : '') . '>' . _YES . '&nbsp;';
+    $form .= "<input type='radio' name='options[4]' value='0'" . ((0 == $options[4]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_SHOWDATE . "</td><td class='odd'>";
-    $form .= "<input type='radio' name='options[5]' value='1'" . (($options[5] == 1) ? ' checked' : '') . '>' . _YES . '&nbsp;';
-    $form .= "<input type='radio' name='options[5]' value='0'" . (($options[5] == 0) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
+    $form .= "<input type='radio' name='options[5]' value='1'" . ((1 == $options[5]) ? ' checked' : '') . '>' . _YES . '&nbsp;';
+    $form .= "<input type='radio' name='options[5]' value='0'" . ((0 == $options[5]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_DISP . "</td><td class='odd'><select name='options[6]'>";
-    $form .= "<option value='0' " . (($options[6] == '0') ? ' selected' : '') . '>' . _MB_NWS_MARQUEE . "</option>\n";
-    $form .= "<option value='1' " . (($options[6] == '1') ? ' selected' : '') . '>' . _MB_NWS_PAUSESCROLLER . "</option>\n";
-    $form .= "<option value='2' " . (($options[6] == '2') ? ' selected' : '') . '>' . _MB_NWS_DOMTICKER . "</option>\n";
+    $form .= "<option value='0' " . (('0' == $options[6]) ? ' selected' : '') . '>' . _MB_NWS_MARQUEE . "</option>\n";
+    $form .= "<option value='1' " . (('1' == $options[6]) ? ' selected' : '') . '>' . _MB_NWS_PAUSESCROLLER . "</option>\n";
+    $form .= "<option value='2' " . (('2' == $options[6]) ? ' selected' : '') . '>' . _MB_NWS_DOMTICKER . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_SORT . "</td><td class='odd'><select name='options[7]'>";
-    $form .= "<option value='RAND()' " . (($options[7] == 'RAND()') ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
-    $form .= "<option value='published' " . (($options[7] == 'published') ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
-    $form .= "<option value='counter' " . (($options[7] == 'counter') ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
-    $form .= "<option value='title' " . (($options[7] == 'title') ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
+    $form .= "<option value='RAND()' " . (('RAND()' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
+    $form .= "<option value='published' " . (('published' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
+    $form .= "<option value='counter' " . (('counter' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
+    $form .= "<option value='title' " . (('title' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_ORDER . "</td><td class='odd'><select name='options[8]'>";
-    $form .= "<option value='ASC' " . (($options[8] == 'ASC') ? ' selected' : '') . '>' . _ASCENDING . "</option>\n";
-    $form .= "<option value='DESC' " . (($options[8] == 'DESC') ? ' selected' : '') . '>' . _DESCENDING . "</option>\n";
+    $form .= "<option value='ASC' " . (('ASC' == $options[8]) ? ' selected' : '') . '>' . _ASCENDING . "</option>\n";
+    $form .= "<option value='DESC' " . (('DESC' == $options[8]) ? ' selected' : '') . '>' . _DESCENDING . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_CHARS . "</td><td class='odd'><input type='text' name='options[9]' value='" . $options[9] . "'></td></tr>";
@@ -168,24 +168,24 @@ function b_scrolling_news_edit($options)
     $form .= "<tr><td class='even'>&nbsp; </td> <td class='odd'>&nbsp;</td></tr>";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_HTML . "</td><td class='odd'>";
-    $form .= "<input type='radio' name='options[11]' value='1'" . (($options[11] == 1) ? ' checked' : '') . '>' . _YES . '&nbsp;';
-    $form .= "<input type='radio' name='options[11]' value='0'" . (($options[11] == 0) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
+    $form .= "<input type='radio' name='options[11]' value='1'" . ((1 == $options[11]) ? ' checked' : '') . '>' . _YES . '&nbsp;';
+    $form .= "<input type='radio' name='options[11]' value='0'" . ((0 == $options[11]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_SMILEY . "</td><td class='odd'>";
-    $form .= "<input type='radio' name='options[12]' value='1'" . (($options[12] == 1) ? ' checked' : '') . '>' . _YES . '&nbsp;';
-    $form .= "<input type='radio' name='options[12]' value='0'" . (($options[12] == 0) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
+    $form .= "<input type='radio' name='options[12]' value='1'" . ((1 == $options[12]) ? ' checked' : '') . '>' . _YES . '&nbsp;';
+    $form .= "<input type='radio' name='options[12]' value='0'" . ((0 == $options[12]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_XCODE . "</td><td class='odd'>";
-    $form .= "<input type='radio' name='options[13]' value='1'" . (($options[13] == 1) ? ' checked' : '') . '>' . _YES . '&nbsp;';
-    $form .= "<input type='radio' name='options[13]' value='0'" . (($options[13] == 0) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
+    $form .= "<input type='radio' name='options[13]' value='1'" . ((1 == $options[13]) ? ' checked' : '') . '>' . _YES . '&nbsp;';
+    $form .= "<input type='radio' name='options[13]' value='0'" . ((0 == $options[13]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_BR . "</td><td class='odd'>";
-    $form .= "<input type='radio' name='options[14]' value='1'" . (($options[14] == 1) ? ' checked' : '') . '>' . _YES . '&nbsp;';
-    $form .= "<input type='radio' name='options[14]' value='0'" . (($options[14] == 0) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
+    $form .= "<input type='radio' name='options[14]' value='1'" . ((1 == $options[14]) ? ' checked' : '') . '>' . _YES . '&nbsp;';
+    $form .= "<input type='radio' name='options[14]' value='0'" . ((0 == $options[14]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_IMAGE . "</td><td class='odd'>";
-    $form .= "<input type='radio' name='options[15]' value='1'" . (($options[15] == 1) ? ' checked' : '') . '>' . _YES . '&nbsp;';
-    $form .= "<input type='radio' name='options[15]' value='0'" . (($options[15] == 0) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
+    $form .= "<input type='radio' name='options[15]' value='1'" . ((1 == $options[15]) ? ' checked' : '') . '>' . _YES . '&nbsp;';
+    $form .= "<input type='radio' name='options[15]' value='0'" . ((0 == $options[15]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //--- get allowed topics
     $form         .= "<tr><td class='even'>" . _MB_NWS_TOPICS . "</td><td class='odd'><select id=\"options[16]\" name=\"options[]\" multiple=\"multiple\">";
     $isAll        = empty($options[16]) ? true : false;
