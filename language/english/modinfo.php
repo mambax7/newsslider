@@ -37,3 +37,6 @@ define('_MI_NWS_OVERVIEW', 'Overview');
 define('_MI_NWS_DISCLAIMER', 'Disclaimer');
 define('_MI_NWS_LICENSE', 'License');
 define('_MI_NWS_SUPPORT', 'Support');
+
+define('_MI_NWS_HOME', 'Home');
+define('_MI_NWS_ABOUT', 'About');

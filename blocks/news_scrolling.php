@@ -194,9 +194,9 @@ function b_scrolling_news_edit($options)
     $xt        = new XoopsTopic($xoopsDB->prefix('topics'));
     $alltopics = $xt->getTopicsList();
     ksort($alltopics);
-    $form .= "<option value=\"0\" ";
+    $form .= '<option value="0" ';
     if ($isAll) {
-        $form .= " selected=\"selected\"";
+        $form .= ' selected="selected"';
     }
     $form .= '>' . _ALL . '</option>';
     foreach ($alltopics as $topicid => $topic) {

@@ -49,9 +49,9 @@ function nws_adminmenu($currentoption = 0, $breadcrumb = '')
     ";
 
     global $xoopsModule, $xoopsConfig;
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
 
-    $tblColors                 = Array_Fill(0, 8, '');
+    $tblColors                 = array_fill(0, 8, '');
     $tblColors[$currentoption] = 'current';
 
     if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/language/' . $xoopsConfig['language'] . '/modinfo.php')) {

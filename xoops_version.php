@@ -26,6 +26,8 @@
 //  ------------------------------------------------------------------------ //
 defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
+include __DIR__ . '/preloads/autoloader.php';
+
 $modversion['version']             = 1.3;
 $modversion['module_status']       = 'Beta 1';
 $modversion['release_date']        = '2017/04/23';

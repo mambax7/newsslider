@@ -89,7 +89,7 @@ function list_blockinstances()
 {
     global $query4redirect, $block_arr;
 
-    $myts = MyTextSanitizer::getInstance();
+    $myts = \MyTextSanitizer::getInstance();
 
     // cachetime options
     $cachetimes = [
@@ -284,7 +284,7 @@ function list_blockinstances()
             if ($block['show_func'] == $bconf['show_func'] && $block['func_file'] == $bconf['file']
                 && (empty($bconf['template']) || $block['template'] == $bconf['template'])) {
                 if (!empty($bconf['description'])) {
-                    $description4show = $myts->makeTboxData4Show($bconf['description']);
+                    $description4show = $myts->htmlSpecialChars($bconf['description']);
                 }
             }
         }

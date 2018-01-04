@@ -13,7 +13,7 @@ global $xoopsModule, $xoopsConfig;
 
 require_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/admin/functions.php';
 
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();
 
 if (is_object($xoopsUser)) {
     $xoopsModule = XoopsModule::getByDirname('newsslider');
