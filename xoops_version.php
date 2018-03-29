@@ -24,7 +24,7 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 include __DIR__ . '/preloads/autoloader.php';
 
@@ -125,8 +125,8 @@ $modversion['hasComments']     = 0;
 $modversion['hasNotification'] = 0;
 
 // On Update X2.0
-if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && 'modulesadmin' == $_POST['fct']
-    && 'update_ok' == $_POST['op']
+if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && 'modulesadmin' === $_POST['fct']
+    && 'update_ok' === $_POST['op']
     && $_POST['dirname'] == $modversion['dirname']) {
     include __DIR__ . '/include/onupdate.inc.php';
 }

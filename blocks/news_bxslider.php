@@ -8,7 +8,7 @@
  * Licence : GPL
  *
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 function b_news_bxslider_show($options)
 {
@@ -162,10 +162,10 @@ function b_news_bxslider_edit($options)
     $form .= "<input type='radio' name='options[6]' value='0'" . ((0 == $options[6]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_SORT . "</td><td class='odd'><select name='options[7]'>";
-    $form .= "<option value='RAND()' " . (('RAND()' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
-    $form .= "<option value='published' " . (('published' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
-    $form .= "<option value='counter' " . (('counter' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
-    $form .= "<option value='title' " . (('title' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
+    $form .= "<option value='RAND()' " . (('RAND()' === $options[7]) ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
+    $form .= "<option value='published' " . (('published' === $options[7]) ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
+    $form .= "<option value='counter' " . (('counter' === $options[7]) ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
+    $form .= "<option value='title' " . (('title' === $options[7]) ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_EFFECT . "</td><td class='odd'><select name='options[8]'>";
@@ -230,7 +230,7 @@ function b_news_bxslider_edit($options)
         $isAll        = empty($options[22]) ? true : false;
         $options_tops = array_slice($options, 22);
         require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
-        $xt        = new XoopsTopic($xoopsDB->prefix('topics'));
+        $xt        = new \XoopsTopic($xoopsDB->prefix('topics'));
         $alltopics = $xt->getTopicsList();
         ksort($alltopics);
         $form .= '<option value="0" ';

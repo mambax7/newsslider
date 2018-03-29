@@ -11,7 +11,7 @@ use XoopsModules\Newsslider;
 
 global $xoopsModule;
 
-require_once __DIR__ . '/../class/Helper.php';
+// require_once __DIR__ . '/../class/Helper.php';
 //require_once __DIR__ . '/../include/common.php';
 $helper = Newsslider\Helper::getInstance();
 

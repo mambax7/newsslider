@@ -8,7 +8,7 @@
  * Licence : GPL
  *
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 function b_news_s3slider_show($options)
 {
@@ -148,17 +148,17 @@ function b_news_s3slider_edit($options)
     $form .= "<input type='radio' name='options[3]' value='0'" . ((0 == $options[3]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_SORT . "</td><td class='odd'><select name='options[4]'>";
-    $form .= "<option value='RAND()' " . (('RAND()' == $options[4]) ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
-    $form .= "<option value='published' " . (('published' == $options[4]) ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
-    $form .= "<option value='counter' " . (('counter' == $options[4]) ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
-    $form .= "<option value='title' " . (('title' == $options[4]) ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
+    $form .= "<option value='RAND()' " . (('RAND()' === $options[4]) ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
+    $form .= "<option value='published' " . (('published' === $options[4]) ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
+    $form .= "<option value='counter' " . (('counter' === $options[4]) ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
+    $form .= "<option value='title' " . (('title' === $options[4]) ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_SLIDESIDE . "</td><td class='odd'><select name='options[5]'>";
-    $form .= "<option value='top' " . (('top' == $options[5]) ? ' selected' : '') . '>' . _MB_NWS_SLIDETOP . "</option>\n";
-    $form .= "<option value='bottom' " . (('bottom' == $options[5]) ? ' selected' : '') . '>' . _MB_NWS_SLIDEBOTTOM . "</option>\n";
-    $form .= "<option value='left' " . (('left' == $options[5]) ? ' selected' : '') . '>' . _MB_NWS_SLIDELEFT . "</option>\n";
-    $form .= "<option value='right' " . (('right' == $options[5]) ? ' selected' : '') . '>' . _MB_NWS_SLIDERIGHT . "</option>\n";
+    $form .= "<option value='top' " . (('top' === $options[5]) ? ' selected' : '') . '>' . _MB_NWS_SLIDETOP . "</option>\n";
+    $form .= "<option value='bottom' " . (('bottom' === $options[5]) ? ' selected' : '') . '>' . _MB_NWS_SLIDEBOTTOM . "</option>\n";
+    $form .= "<option value='left' " . (('left' === $options[5]) ? ' selected' : '') . '>' . _MB_NWS_SLIDELEFT . "</option>\n";
+    $form .= "<option value='right' " . (('right' === $options[5]) ? ' selected' : '') . '>' . _MB_NWS_SLIDERIGHT . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_CHARS . "</td><td class='odd'><input type='text' name='options[6]' value='" . $options[6] . "'></td></tr>";
@@ -194,7 +194,7 @@ function b_news_s3slider_edit($options)
         $isAll        = empty($options[13]) ? true : false;
         $options_tops = array_slice($options, 13);
         require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
-        $xt        = new XoopsTopic($xoopsDB->prefix('topics'));
+        $xt        = new \XoopsTopic($xoopsDB->prefix('topics'));
         $alltopics = $xt->getTopicsList();
         ksort($alltopics);
         $form .= '<option value="0" ';

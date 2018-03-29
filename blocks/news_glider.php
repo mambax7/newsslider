@@ -8,7 +8,7 @@
  * Licence : GPL
  *
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 function b_news_glider_show($options)
 {
@@ -129,10 +129,10 @@ function b_news_glider_edit($options)
     $form .= "<tr><td class='even'>" . _MB_NWS_BPACE . "</td><td class='odd'><input type='text' name='options[1]' size='16' maxlength=2 value='" . $options[1] . "'></td></tr>";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_DIRECTION . "</td><td class='odd'><select name='options[2]'>";
-    $form .= "<option value='downup' " . (('downup' == $options[2]) ? ' selected' : '') . '>' . _MB_NWS_UP . "</option>\n";
-    $form .= "<option value='updown' " . (('updown' == $options[2]) ? ' selected' : '') . '>' . _MB_NWS_DOWN . "</option>\n";
-    $form .= "<option value='leftright' " . (('leftright' == $options[2]) ? ' selected' : '') . '>' . _LEFT . "</option>\n";
-    $form .= "<option value='rightleft' " . (('rightleft' == $options[2]) ? ' selected' : '') . '>' . _RIGHT . "</option>\n";
+    $form .= "<option value='downup' " . (('downup' === $options[2]) ? ' selected' : '') . '>' . _MB_NWS_UP . "</option>\n";
+    $form .= "<option value='updown' " . (('updown' === $options[2]) ? ' selected' : '') . '>' . _MB_NWS_DOWN . "</option>\n";
+    $form .= "<option value='leftright' " . (('leftright' === $options[2]) ? ' selected' : '') . '>' . _LEFT . "</option>\n";
+    $form .= "<option value='rightleft' " . (('rightleft' === $options[2]) ? ' selected' : '') . '>' . _RIGHT . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_PERSISTSTATE . "</td><td class='odd'>";
@@ -160,15 +160,15 @@ function b_news_glider_edit($options)
     $form .= "<input type='radio' name='options[12]' value='0'" . ((0 == $options[12]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_SORT . "</td><td class='odd'><select name='options[13]'>";
-    $form .= "<option value='RAND()' " . (('RAND()' == $options[13]) ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
-    $form .= "<option value='published' " . (('published' == $options[13]) ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
-    $form .= "<option value='counter' " . (('counter' == $options[13]) ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
-    $form .= "<option value='title' " . (('title' == $options[13]) ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
+    $form .= "<option value='RAND()' " . (('RAND()' === $options[13]) ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
+    $form .= "<option value='published' " . (('published' === $options[13]) ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
+    $form .= "<option value='counter' " . (('counter' === $options[13]) ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
+    $form .= "<option value='title' " . (('title' === $options[13]) ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_ORDER . "</td><td class='odd'><select name='options[14]'>";
-    $form .= "<option value='ASC' " . (('ASC' == $options[14]) ? ' selected' : '') . '>' . _ASCENDING . "</option>\n";
-    $form .= "<option value='DESC' " . (('DESC' == $options[14]) ? ' selected' : '') . '>' . _DESCENDING . "</option>\n";
+    $form .= "<option value='ASC' " . (('ASC' === $options[14]) ? ' selected' : '') . '>' . _ASCENDING . "</option>\n";
+    $form .= "<option value='DESC' " . (('DESC' === $options[14]) ? ' selected' : '') . '>' . _DESCENDING . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_CHARS . "</td><td class='odd'><input type='text' name='options[15]' value='" . $options[15] . "'></td></tr>";
@@ -208,7 +208,7 @@ function b_news_glider_edit($options)
         $isAll        = empty($options[23]) ? true : false;
         $options_tops = array_slice($options, 23);
         require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
-        $xt        = new XoopsTopic($xoopsDB->prefix('topics'));
+        $xt        = new \XoopsTopic($xoopsDB->prefix('topics'));
         $alltopics = $xt->getTopicsList();
         ksort($alltopics);
         $form .= '<option value="0" ';

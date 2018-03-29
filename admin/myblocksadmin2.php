@@ -5,7 +5,7 @@
 //                          GIJOE <http://www.peak.ne.jp>                   //
 // ------------------------------------------------------------------------- //
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 require_once __DIR__ . '/../../../include/cp_header.php';
 
@@ -54,7 +54,7 @@ if (!empty($target_module) && is_object($target_module)) {
     $target_mid     = $target_module->getVar('mid');
     $target_mname   = $target_module->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $target_module->getVar('version') / 100.0);
     $query4redirect = '?dirname=' . urlencode(strip_tags($_GET['dirname']));
-} elseif (isset($_GET['mid']) && 0 == $_GET['mid'] || 'blocksadmin' == $xoopsModule->getVar('dirname')) {
+} elseif (isset($_GET['mid']) && 0 == $_GET['mid'] || 'blocksadmin' === $xoopsModule->getVar('dirname')) {
     $target_mid     = 0;
     $target_mname   = '';
     $query4redirect = '?mid=0';
@@ -71,11 +71,11 @@ if (!$syspermHandler->checkRight('system_admin', XOOPS_SYSTEM_BLOCK, $xoopsUser-
 }
 
 // get blocks owned by the module (Imported from xoopsblock.php then modified)
-$db        = XoopsDatabaseFactory::getDatabaseConnection();
+$db        = \XoopsDatabaseFactory::getDatabaseConnection();
 $sql       = 'SELECT bid,name,show_func,func_file,template FROM ' . $db->prefix('newblocks') . " WHERE mid='$target_mid'";
 $result    = $db->query($sql);
 $block_arr = [];
-while (list($bid, $bname, $show_func, $func_file, $template) = $db->fetchRow($result)) {
+while (false !== (list($bid, $bname, $show_func, $func_file, $template) = $db->fetchRow($result))) {
     $block_arr[$bid] = [
         'name'      => $bname,
         'show_func' => $show_func,
@@ -120,8 +120,8 @@ function list_blockinstances()
     </tr>\n";
 
     // get block instances
-    $crit     = new Criteria('bid', '(' . implode(',', array_keys($block_arr)) . ')', 'IN');
-    $criteria = new CriteriaCompo($crit);
+    $crit     = new \Criteria('bid', '(' . implode(',', array_keys($block_arr)) . ')', 'IN');
+    $criteria = new \CriteriaCompo($crit);
     $criteria->setSort('visible DESC, side ASC, weight');
     $instanceHandler = xoops_getHandler('blockinstance');
     $instances       = $instanceHandler->getObjects($criteria, true, true);
@@ -130,8 +130,8 @@ function list_blockinstances()
     $module_list[_AM_SYSTEMLEVEL]['0-2'] = _AM_ADMINBLOCK;
     $module_list[_AM_SYSTEMLEVEL]['0-1'] = _AM_NWS_TOPPAGE;
     $module_list[_AM_SYSTEMLEVEL]['0-0'] = _AM_NWS_ALLPAGES;
-    $criteria                            = new CriteriaCompo(new Criteria('hasmain', 1));
-    $criteria->add(new Criteria('isactive', 1));
+    $criteria                            = new \CriteriaCompo(new \Criteria('hasmain', 1));
+    $criteria->add(new \Criteria('isactive', 1));
     /** @var XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $module_main   = $moduleHandler->getObjects($criteria, true, true);
@@ -274,7 +274,7 @@ function list_blockinstances()
         </td>
         </tr>\n";
 
-        $class = ('even' == $class) ? 'odd' : 'even';
+        $class = ('even' === $class) ? 'odd' : 'even';
     }
 
     // list block classes for add (not instances)
@@ -302,7 +302,7 @@ function list_blockinstances()
         </td>
         </tr>
         \n";
-        $class = ('even' == $class) ? 'odd' : 'even';
+        $class = ('even' === $class) ? 'odd' : 'even';
     }
 
     echo "
@@ -327,7 +327,7 @@ function list_groups2()
     $result = $xoopsDB->query('SELECT i.instanceid,i.title FROM ' . $xoopsDB->prefix('block_instance') . ' i LEFT JOIN ' . $xoopsDB->prefix('newblocks') . " b ON i.bid=b.bid WHERE b.mid='$target_mid'");
 
     $item_list = [];
-    while (list($iid, $title) = $xoopsDB->fetchRow($result)) {
+    while (false !== (list($iid, $title) = $xoopsDB->fetchRow($result))) {
         $item_list[$iid] = $title;
     }
 

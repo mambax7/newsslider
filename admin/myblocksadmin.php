@@ -57,7 +57,7 @@ if (!empty($target_module) && is_object($target_module)) {
     $target_mid     = $target_module->getVar('mid');
     $target_mname   = $target_module->getVar('name') . '&nbsp;' . sprintf('(%2.2f)', $target_module->getVar('version') / 100.0);
     $query4redirect = '?dirname=' . urlencode(strip_tags($_GET['dirname']));
-} elseif (isset($_GET['mid']) && 0 == $_GET['mid'] || 'blocksadmin' == $xoopsModule->getVar('dirname')) {
+} elseif (isset($_GET['mid']) && 0 == $_GET['mid'] || 'blocksadmin' === $xoopsModule->getVar('dirname')) {
     $target_mid     = 0;
     $target_mname   = '';
     $query4redirect = '?mid=0';
@@ -75,12 +75,12 @@ if (!$syspermHandler->checkRight('system_admin', XOOPS_SYSTEM_BLOCK, $xoopsUser-
 
 // get blocks owned by the module (Imported from xoopsblock.php then modified)
 //$block_arr = XoopsBlock::getByModule( $target_mid ) ;
-$db        = XoopsDatabaseFactory::getDatabaseConnection();
+$db        = \XoopsDatabaseFactory::getDatabaseConnection();
 $sql       = 'SELECT * FROM ' . $db->prefix('newblocks') . " WHERE mid='$target_mid' ORDER BY visible DESC,side,weight";
 $result    = $db->query($sql);
 $block_arr = [];
-while ($myrow = $db->fetchArray($result)) {
-    $block_arr[] = new XoopsBlock($myrow);
+while (false !== ($myrow = $db->fetchArray($result))) {
+    $block_arr[] = new \XoopsBlock($myrow);
 }
 
 function list_blocks()
@@ -181,16 +181,16 @@ function list_blocks()
         }
 
         // target modules
-        $db            = XoopsDatabaseFactory::getDatabaseConnection();
+        $db            = \XoopsDatabaseFactory::getDatabaseConnection();
         $result        = $db->query('SELECT module_id FROM ' . $db->prefix('block_module_link') . " WHERE block_id='$bid'");
         $selected_mids = [];
-        while (list($selected_mid) = $db->fetchRow($result)) {
+        while (false !== (list($selected_mid) = $db->fetchRow($result))) {
             $selected_mids[] = (int)$selected_mid;
         }
         /** @var XoopsModuleHandler $moduleHandler */
         $moduleHandler = xoops_getHandler('module');
-        $criteria      = new CriteriaCompo(new Criteria('hasmain', 1));
-        $criteria->add(new Criteria('isactive', 1));
+        $criteria      = new \CriteriaCompo(new \Criteria('hasmain', 1));
+        $criteria->add(new \Criteria('isactive', 1));
         $module_list     = $moduleHandler->getList($criteria);
         $module_list[-1] = _AM_TOPPAGE;
         $module_list[0]  = _AM_ALLPAGES;
@@ -205,7 +205,7 @@ function list_blocks()
         }
 
         // delete link if it is cloned block
-        if ('D' == $block_arr[$i]->getVar('block_type') || 'C' == $block_arr[$i]->getVar('block_type')) {
+        if ('D' === $block_arr[$i]->getVar('block_type') || 'C' === $block_arr[$i]->getVar('block_type')) {
             $delete_link = "<br><a href='admin.php?fct=blocksadmin&amp;op=delete&amp;bid=$bid'>" . _DELETE . '</a>';
         } else {
             $delete_link = '';
@@ -213,7 +213,7 @@ function list_blocks()
 
         // clone link if it is marked as cloneable block
         // $modversion['blocks'][n]['can_clone']
-        if ('D' == $block_arr[$i]->getVar('block_type') || 'C' == $block_arr[$i]->getVar('block_type')) {
+        if ('D' === $block_arr[$i]->getVar('block_type') || 'C' === $block_arr[$i]->getVar('block_type')) {
             $can_clone = true;
         } else {
             $can_clone = false;
@@ -283,7 +283,7 @@ function list_blocks()
             </td>
         </tr>\n";
 
-        $class = ('even' == $class) ? 'odd' : 'even';
+        $class = ('even' === $class) ? 'odd' : 'even';
     }
 
     echo "

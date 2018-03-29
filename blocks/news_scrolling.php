@@ -8,7 +8,7 @@
  * Licence : GPL
  *
  */
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 function b_scrolling_news_show($options)
 {
@@ -132,8 +132,8 @@ function b_scrolling_news_edit($options)
     $form .= "<tr><td class='even'>" . _MB_NWS_BACKGROUNDCOLOR . "</td><td class='odd'><input type='text' name='options[2]' size='16'  value='" . $options[2] . "'></td></tr>";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_DIRECTION . "</td><td class='odd'><select name='options[3]'>";
-    $form .= "<option value='up' " . (('up' == $options[3]) ? ' selected' : '') . '>' . _MB_NWS_UP . "</option>\n";
-    $form .= "<option value='down' " . (('down' == $options[3]) ? ' selected' : '') . '>' . _MB_NWS_DOWN . "</option>\n";
+    $form .= "<option value='up' " . (('up' === $options[3]) ? ' selected' : '') . '>' . _MB_NWS_UP . "</option>\n";
+    $form .= "<option value='down' " . (('down' === $options[3]) ? ' selected' : '') . '>' . _MB_NWS_DOWN . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_ALTERNATE . "</td><td class='odd'>";
@@ -151,15 +151,15 @@ function b_scrolling_news_edit($options)
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_SORT . "</td><td class='odd'><select name='options[7]'>";
-    $form .= "<option value='RAND()' " . (('RAND()' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
-    $form .= "<option value='published' " . (('published' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
-    $form .= "<option value='counter' " . (('counter' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
-    $form .= "<option value='title' " . (('title' == $options[7]) ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
+    $form .= "<option value='RAND()' " . (('RAND()' === $options[7]) ? ' selected' : '') . '>' . _MB_NWS_RANDOM . "</option>\n";
+    $form .= "<option value='published' " . (('published' === $options[7]) ? ' selected' : '') . '>' . _MB_NWS_DATE . "</option>\n";
+    $form .= "<option value='counter' " . (('counter' === $options[7]) ? ' selected' : '') . '>' . _MB_NWS_HITS . "</option>\n";
+    $form .= "<option value='title' " . (('title' === $options[7]) ? ' selected' : '') . '>' . _MB_NWS_NAME . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_ORDER . "</td><td class='odd'><select name='options[8]'>";
-    $form .= "<option value='ASC' " . (('ASC' == $options[8]) ? ' selected' : '') . '>' . _ASCENDING . "</option>\n";
-    $form .= "<option value='DESC' " . (('DESC' == $options[8]) ? ' selected' : '') . '>' . _DESCENDING . "</option>\n";
+    $form .= "<option value='ASC' " . (('ASC' === $options[8]) ? ' selected' : '') . '>' . _ASCENDING . "</option>\n";
+    $form .= "<option value='DESC' " . (('DESC' === $options[8]) ? ' selected' : '') . '>' . _DESCENDING . "</option>\n";
     $form .= "</select></td></tr>\n";
     //---
     $form .= "<tr><td class='even'>" . _MB_NWS_CHARS . "</td><td class='odd'><input type='text' name='options[9]' value='" . $options[9] . "'></td></tr>";
@@ -191,7 +191,7 @@ function b_scrolling_news_edit($options)
     $isAll        = empty($options[16]) ? true : false;
     $options_tops = array_slice($options, 16);
     require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
-    $xt        = new XoopsTopic($xoopsDB->prefix('topics'));
+    $xt        = new \XoopsTopic($xoopsDB->prefix('topics'));
     $alltopics = $xt->getTopicsList();
     ksort($alltopics);
     $form .= '<option value="0" ';

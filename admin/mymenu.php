@@ -1,6 +1,8 @@
 <?php
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+use XoopsModules\Newsslider;
+
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 if (!defined('XOOPS_ORETEKI')) {
     // Skip for ORETEKI XOOPS
@@ -11,11 +13,9 @@ if (!defined('XOOPS_ORETEKI')) {
         die('$xoopsModule is not set');
     }
 
-    if (file_exists('../language/' . $xoopsConfig['language'] . '/modinfo.php')) {
-        require_once __DIR__ . '/../language/' . $xoopsConfig['language'] . '/modinfo.php';
-    } else {
-        require_once __DIR__ . '/../language/english/modinfo.php';
-    }
+    /** @var Newsslider\Helper $helper */
+    $helper = Newsslider\Helper::getInstance();
+    $helper->loadLanguage('modinfo');
 
     include __DIR__ . '/menu.php';
 

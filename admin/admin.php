@@ -16,6 +16,7 @@
  * @since
  * @author       XOOPS Development Team, Kazumi Ono (AKA onokazu)
  */
+use XoopsModules\Newsslider;
 
 #global $xoopsConfig;
 
@@ -54,24 +55,16 @@ $error = false;
 if (0 != $admintest) {
     if (isset($fct) && '' != $fct) {
         if (file_exists(XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php')) {
-            if (file_exists(XOOPS_ROOT_PATH . '/modules/system/language/' . $xoopsConfig['language'] . '/admin.php')) {
-                include XOOPS_ROOT_PATH . '/modules/system/language/' . $xoopsConfig['language'] . '/admin.php';
-            } else {
-                include XOOPS_ROOT_PATH . '/modules/system/language/english/admin.php';
-            }
-
-            if (file_exists(XOOPS_ROOT_PATH . '/modules/system/language/' . $xoopsConfig['language'] . '/admin/' . $fct . '.php')) {
-                include XOOPS_ROOT_PATH . '/modules/system/language/' . $xoopsConfig['language'] . '/admin/' . $fct . '.php';
-            } elseif (file_exists(XOOPS_ROOT_PATH . '/modules/system/language/english/admin/' . $fct . '.php')) {
-                include XOOPS_ROOT_PATH . '/modules/system/language/english/admin/' . $fct . '.php';
-            }
+            xoops_loadLanguage('admin', 'system');
+            xoops_loadLanguage('admin/' . $fct, 'system');
+            
             include XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php';
             // addendum for Xoops 2.3+
-            if (file_exists(XOOPS_ROOT_PATH . '/modules/newsslider/language/' . $xoopsConfig['language'] . '/main.php')) {
-                require_once XOOPS_ROOT_PATH . '/modules/newsslider/language/' . $xoopsConfig['language'] . '/main.php';
-            } else {
-                require_once XOOPS_ROOT_PATH . '/modules/newsslider/language/english/main.php';
-            }
+
+
+            /** @var Newsslider\Helper $helper */
+            $helper = Newsslider\Helper::getInstance();
+            $helper->loadLanguage('main');
 
             $syspermHandler = xoops_getHandler('groupperm');
             $category       = !empty($modversion['category']) ? (int)$modversion['category'] : 0;
