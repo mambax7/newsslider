@@ -43,7 +43,7 @@ if (!defined('XOOPS_ORETEKI')) {
     }
     if (empty($adminMenu_hilighted)) {
         foreach (array_keys($adminObject) as $i) {
-            if (stristr($mymenu_uri, $adminmenu[$i]['link'])) {
+            if (false !== stripos($mymenu_uri, $adminmenu[$i]['link'])) {
                 $adminmenu[$i]['color'] = '#FFCCCC';
             }
         }
