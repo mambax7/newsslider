@@ -34,7 +34,7 @@ function b_scrolling_news_show($options)
     $block['alternate']   = (1 == $options[4]) ? 1 : 0;
     $block['includedate'] = (1 == $options[5]) ? 1 : 0;
     $block['style']       = $options[6];
-    $uniqueid             = substr(md5(uniqid(rand())), 25);
+    $uniqueid             = substr(md5(uniqid(mt_rand())), 25);
     $block['divid']       = $uniqueid;
 
     $block['sort'] = $options[7];

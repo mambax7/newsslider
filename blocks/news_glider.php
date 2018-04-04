@@ -41,7 +41,7 @@ function b_news_glider_show($options)
     $block['autorotate']   = (1 == $options[10]) ? 1 : 0;
     $block['acycles']      = isset($options[11]) && '' != $options[11] ? $options[11] : '0';
     $block['includedate']  = (1 == $options[12]) ? 1 : 0;
-    $uniqueid              = substr(md5(uniqid(rand())), 25);
+    $uniqueid              = substr(md5(uniqid(mt_rand())), 25);
     $block['divid']        = $uniqueid;
     $block['navi']         = (1 == $options[17]) ? 1 : 0;
 
