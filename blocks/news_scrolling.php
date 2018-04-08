@@ -21,7 +21,7 @@ function b_scrolling_news_show($options)
     $module        = $moduleHandler->getByDirname('news');
     if (!isset($newsConfig)) {
         $configHandler = xoops_getHandler('config');
-        $newsConfig    =& $configHandler->getConfigsByCat(0, $module->getVar('mid'));
+        $newsConfig    = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
     }
     if (!is_object($module)) {
         return $block;
