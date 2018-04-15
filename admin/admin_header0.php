@@ -7,8 +7,8 @@
  * Licence: GNU
  */
 
-include __DIR__ . '/../../../mainfile.php';
-require_once __DIR__ . '/../../../include/cp_header.php';
+include  dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
+require_once  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 global $xoopsModule, $xoopsConfig;
 
 require_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/admin/functions.php';

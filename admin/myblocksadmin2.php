@@ -7,11 +7,11 @@
 
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
-require_once __DIR__ . '/../../../include/cp_header.php';
+require_once  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 
 require_once __DIR__ . '/mygrouppermform.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
-//require_once __DIR__ . '/../include/gtickets.php';
+//require_once  dirname(__DIR__) . '/include/gtickets.php';
 
 $xoops_system_path = XOOPS_ROOT_PATH . '/modules/system';
 
@@ -311,7 +311,7 @@ function list_blockinstances()
     <input type='hidden' name='query4redirect' value='$query4redirect'>
     <input type='hidden' name='fct' value='blocksadmin'>
     <input type='hidden' name='op' value='order2'>
-    " . $GLOBALS['xoopsSecurity']->getTokenHTML('myblocksadmin') . "
+    " . $GLOBALS['xoopsSecurity']->getTokenHTML() . "
     <input type='submit' name='submit' value='" . _SUBMIT . "'>
     </td>
     </tr>
