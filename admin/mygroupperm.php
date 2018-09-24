@@ -1,6 +1,9 @@
 <?php
 
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+//defined('XOOPS_ROOT_PATH') || die('Restricted access');
+
+require_once __DIR__ . '/admin_header.php';
+xoops_cp_header();
 
 function myDeleteByModule(\XoopsDatabase $db, $gperm_modid, $gperm_name = null, $gperm_itemid = null)
 {
@@ -33,7 +36,7 @@ if (!is_object($module) || !$module->getVar('isactive')) {
 }
 $memberHandler = xoops_getHandler('member');
 $group_list    = $memberHandler->getGroupList();
-if (is_array($_POST['perms']) && !empty($_POST['perms'])) {
+if (\Xmf\Request::hasVar('perms', 'POST') && is_array($_POST['perms']) && !empty($_POST['perms'])) {
     $grouppermHandler = xoops_getHandler('groupperm');
     foreach ($_POST['perms'] as $perm_name => $perm_data) {
         foreach ($perm_data['itemname'] as $item_id => $item_name) {

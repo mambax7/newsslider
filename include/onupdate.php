@@ -69,7 +69,7 @@ function xoops_module_pre_update_newsslider(\XoopsModule $module)
 function xoops_module_update_newsslider(\XoopsModule $module, $previousVersion = null)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    $capsDirName   = strtoupper($moduleDirName);
+    $moduleDirNameUpper   = strtoupper($moduleDirName);
 
     /** @var Newsslider\Helper $helper */
     /** @var Newsslider\Utility $utility */

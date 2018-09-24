@@ -8,25 +8,29 @@
  * Licence : GPL
  *
  */
+
+use XoopsModules\Newsslider;
+
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 function b_news_feature_show($options)
 {
     global $xoopsDB, $xoopsUser;
-    $myts = MyTextSanitizer:: getInstance();
+    $myts = \MyTextSanitizer::getInstance();
 
     $block = [];
     /** @var XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $module        = $moduleHandler->getByDirname('news');
+    if (!is_object($module)) {
+        return $block;
+    }
     if (!isset($newsConfig)) {
         $configHandler = xoops_getHandler('config');
         $newsConfig    = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
     }
-    if (!is_object($module)) {
-        return $block;
-    }
-    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
+
+//    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
     require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
 
     $block['speed']       = isset($options[1]) && '' != $options[1] ? $options[1] : '5';
@@ -34,7 +38,7 @@ function b_news_feature_show($options)
     $block['author']      = (1 == $options[3]) ? 1 : 0;
     $block['sort']        = $options[4];
 
-    $tmpstory = new NewsStory;
+    $tmpstory = new \XoopsModules\News\NewsStory;
     // for compatibility with old News versions
     if ($module->getVar('version') >= 150) {
         $restricted = news_getmoduleoption('restrictindex');
@@ -125,7 +129,7 @@ function b_news_feature_show($options)
 
     $block['lang_read_more'] = _MB_NWS_READMORE;
     global $xoTheme;
-    $xoTheme->addStylesheet('modules/newsslider/style.css');
+    $xoTheme->addStylesheet('modules/newsslider/assets/css/style.css');
     //$xoTheme -> addScript('/modules/newsslider/assets/js/jquery.min.js', array( 'type' => 'text/javascript' ) );
     //$xoTheme -> addScript('/modules/newsslider/assets/js/jquery-ui.min.js', array( 'type' => 'text/javascript' ) );
     /*$jquery = ($options[8]==1) ? 1:0;
@@ -145,7 +149,7 @@ function b_news_feature_show($options)
 function b_news_feature_edit($options)
 {
     global $xoopsDB;
-    $myts = MyTextSanitizer:: getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $form = "<table width='100%' border='0'  class='bg2'>";
     $form .= "<tr><th width='50%'>" . _OPTIONS . "</th><th width='50%'>" . _MB_NWS_SETTINGS . '</th></tr>';
     $form .= "<tr><td class='even'>" . _MB_NWS_BLIMIT . "</td><td class='odd'><input type='text' name='options[0]' size='16' maxlength=3 value='" . $options[0] . "'></td></tr>";
@@ -204,8 +208,8 @@ function b_news_feature_edit($options)
     if (is_object($newsModule)) {
         $isAll        = empty($options[13]) ? true : false;
         $options_tops = array_slice($options, 13);
-        require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
-        $xt        = new \XoopsTopic($xoopsDB->prefix('topics'));
+//        require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
+        $xt        = new \XoopsModules\Newsslider\Topic($xoopsDB->prefix('topics'));
         $alltopics = $xt->getTopicsList();
         ksort($alltopics);
         $form .= '<option value="0" ';

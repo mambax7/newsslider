@@ -30,9 +30,9 @@ if (empty($fct)) {
 //if (isset($fct) && $fct == "users") {
 //  $xoopsOption['pagetype'] = "user";
 //}
-include  dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 // include "../../mainfile.php"; GIJ
-include XOOPS_ROOT_PATH . '/include/cp_functions.php';
+require_once XOOPS_ROOT_PATH . '/include/cp_functions.php';
 
 require_once XOOPS_ROOT_PATH . '/kernel/module.php';
 //require_once  dirname(__DIR__) . '/include/gtickets.php';// GIJ
@@ -57,8 +57,8 @@ if (0 != $admintest) {
         if (file_exists(XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php')) {
             xoops_loadLanguage('admin', 'system');
             xoops_loadLanguage('admin/' . $fct, 'system');
-            
-            include XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php';
+
+            require_once XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php';
             // addendum for Xoops 2.3+
 
 

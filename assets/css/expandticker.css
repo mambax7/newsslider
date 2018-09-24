@@ -1,0 +1,46 @@
+.expandticker{
+border:1px solid black;
+padding:7px;
+background:lightyellow;
+width: 200px;
+height:130px;
+overflow-y:auto; /*set DIV to scroll if content exceeds ticker height*/
+position: relative;
+}
+
+.expandcontent{
+display:none;
+}
+
+ul.dropdownlist{
+font: normal 13px Verdana;
+margin: 0;
+padding: 0;
+position: absolute;
+left: 0;
+top: 0;
+z-index: 100;
+list-style-type: none;
+background: white;
+border: 1px solid #ca431a;
+padding: 3px;
+}
+
+
+ul.dropdownlist li a{
+display: block;
+background: #ffdb8d;
+color: black;
+text-decoration: none;
+padding: 3px 5px 3px 3px;
+}
+
+ul.dropdownlist li a:hover{
+background: #ffbf6d;
+color: black;
+}
+
+ul.dropdownlist li.selected a{
+background: #ca431a;
+color: white;
+}

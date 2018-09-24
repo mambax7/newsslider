@@ -8,25 +8,29 @@
  * Licence : GPL
  *
  */
+
+use XoopsModules\Newsslider;
+
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 function b_scrolling_news_show($options)
 {
     global $xoopsDB, $xoopsUser;
-    $myts = MyTextSanitizer:: getInstance();
+    $myts = \MyTextSanitizer::getInstance();
 
     $block = [];
     /** @var XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $module        = $moduleHandler->getByDirname('news');
+    if (!is_object($module)) {
+        return $block;
+    }
     if (!isset($newsConfig)) {
         $configHandler = xoops_getHandler('config');
         $newsConfig    = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
     }
-    if (!is_object($module)) {
-        return $block;
-    }
-    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
+
+//    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
     require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
     $block['speed']       = isset($options[1]) && '' != $options[1] ? $options[1] : '3';
     $block['bgcolor']     = isset($options[2]) && '' != $options[2] ? $options[2] : '#FFFFFF';
@@ -38,7 +42,7 @@ function b_scrolling_news_show($options)
     $block['divid']       = $uniqueid;
 
     $block['sort'] = $options[7];
-    $tmpstory      = new NewsStory;
+    $tmpstory      = new \XoopsModules\News\NewsStory;
     // for compatibility with old News versions
     if ($module->getVar('version') >= 150) {
         $restricted = news_getmoduleoption('restrictindex');
@@ -124,7 +128,7 @@ function b_scrolling_news_show($options)
 function b_scrolling_news_edit($options)
 {
     global $xoopsDB;
-    $myts = MyTextSanitizer:: getInstance();
+    $myts = \MyTextSanitizer::getInstance();
     $form = "<table width='100%' border='0'  class='bg2'>";
     $form .= "<tr><th width='50%'>" . _OPTIONS . "</th><th width='50%'>" . _MB_NWS_SETTINGS . '</th></tr>';
     $form .= "<tr><td class='even'>" . _MB_NWS_BLIMIT . "</td><td class='odd'><input type='text' name='options[0]' size='16' maxlength=3 value='" . $options[0] . "'></td></tr>";
@@ -190,8 +194,8 @@ function b_scrolling_news_edit($options)
     $form         .= "<tr><td class='even'>" . _MB_NWS_TOPICS . "</td><td class='odd'><select id=\"options[16]\" name=\"options[]\" multiple=\"multiple\">";
     $isAll        = empty($options[16]) ? true : false;
     $options_tops = array_slice($options, 16);
-    require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
-    $xt        = new \XoopsTopic($xoopsDB->prefix('topics'));
+//    require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
+    $xt        = new \XoopsModules\Newsslider\Topic($xoopsDB->prefix('topics'));
     $alltopics = $xt->getTopicsList();
     ksort($alltopics);
     $form .= '<option value="0" ';

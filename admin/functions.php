@@ -60,7 +60,7 @@ function nws_adminmenu($currentoption = 0, $breadcrumb = '')
         require_once XOOPS_ROOT_PATH . '/modules/newsslider/language/english/modinfo.php';
     }
 
-    include __DIR__ . '/menu.php';
+    require_once __DIR__   . '/menu.php';
 
     echo '<div id="buttontop">';
     echo '<table style="width: 100%; padding: 0;" cellspacing="0"><tr>';

@@ -30,7 +30,7 @@ use XoopsModules\Newsslider;
  */
 function xoops_module_pre_install_newsslider(\XoopsModule $module)
 {
-    include  dirname(__DIR__) . '/preloads/autoloader.php';
+    require_once dirname(__DIR__) . '/preloads/autoloader.php';
     /** @var Newsslider\Utility $utility */
     $utility = new \XoopsModules\Newsslider\Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
@@ -60,7 +60,8 @@ function xoops_module_install_newsslider(\XoopsModule $module)
 
     $moduleDirName = basename(dirname(__DIR__));
 
-    $helper       = Newsslider\Helper::getInstance();
+    /** @var Newsslider\Helper $helper */
+    $helper = Newsslider\Helper::getInstance();
     $utility      = new Newsslider\Utility();
     $configurator = new Newsslider\Common\Configurator();
     // Load language files

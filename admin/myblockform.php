@@ -66,7 +66,7 @@ if ($block['is_custom']) {
     $can_use_spaw = true;
     if ($usespaw && $can_use_spaw) {
         // SPAW Config
-        include XOOPS_ROOT_PATH . '/common/spaw/spaw_control.class.php';
+        require_once XOOPS_ROOT_PATH . '/common/spaw/spaw_control.class.php';
         ob_start();
         $sw = new SPAW_Wysiwyg('bcontent', $block['content']);
         $sw->show();
@@ -90,11 +90,11 @@ if ($block['is_custom']) {
 } else {
     if ('' != $block['template'] && !defined('XOOPS_ORETEKI')) {
         $tplfileHandler = xoops_getHandler('tplfile');
-        $btemplate      =& $tplfileHandler->find($GLOBALS['xoopsConfig']['template_set'], 'block', $block['bid']);
+        $btemplate      = $tplfileHandler->find($GLOBALS['xoopsConfig']['template_set'], 'block', $block['bid']);
         if (count($btemplate) > 0) {
             $form->addElement(new \XoopsFormLabel(_AM_CONTENT, '<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=tplsets&op=edittpl&id=' . $btemplate[0]->getVar('tpl_id') . '">' . _AM_EDITTPL . '</a>'));
         } else {
-            $btemplate2 =& $tplfileHandler->find('default', 'block', $block['bid']);
+            $btemplate2 = $tplfileHandler->find('default', 'block', $block['bid']);
             if (count($btemplate2) > 0) {
                 $form->addElement(new \XoopsFormLabel(_AM_CONTENT, '<a href="' . XOOPS_URL . '/modules/system/admin.php?fct=tplsets&op=edittpl&id=' . $btemplate2[0]->getVar('tpl_id') . '" target="_blank">' . _AM_EDITTPL . '</a>'));
             }

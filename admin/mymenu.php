@@ -2,7 +2,11 @@
 
 use XoopsModules\Newsslider;
 
+require_once __DIR__ . '/admin_header.php';
+
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
+
+xoops_cp_header();
 
 if (!defined('XOOPS_ORETEKI')) {
     // Skip for ORETEKI XOOPS
@@ -17,7 +21,7 @@ if (!defined('XOOPS_ORETEKI')) {
     $helper = Newsslider\Helper::getInstance();
     $helper->loadLanguage('modinfo');
 
-    include __DIR__ . '/menu.php';
+    require_once __DIR__   . '/menu.php';
 
     //  array_push( $adminObject , array( 'title' => _PREFERENCES , 'link' => '../system/admin.php?fct=preferences&op=showmod&mod=' . $module->getvar('mid') ) ) ;
     $menuitem_dirname = $module->getVar('dirname');
