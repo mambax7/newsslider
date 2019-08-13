@@ -7,7 +7,7 @@
 
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
-require_once  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 
 require_once __DIR__ . '/mygrouppermform.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
@@ -30,7 +30,7 @@ error_reporting($error_reporting_level);
 
 $group_defs = file("$xoops_system_path/language/$language/admin/groups.php");
 foreach ($group_defs as $def) {
-    if (false !== strpos($def, '_AM_NWS_ACCESSRIGHTS') || false !== strpos($def, '_AM_NWS_ACTIVERIGHTS')) {
+    if (false !== mb_strpos($def, '_AM_NWS_ACCESSRIGHTS') || false !== mb_strpos($def, '_AM_NWS_ACTIVERIGHTS')) {
         eval($def);
     }
 }
@@ -41,7 +41,7 @@ if (!is_object($xoopsModule)) {
 }
 
 // set target_module if specified by $_GET['dirname']
-/** @var XoopsModuleHandler $moduleHandler */
+/** @var \XoopsModuleHandler $moduleHandler */
 $moduleHandler = xoops_getHandler('module');
 if (!empty($_GET['dirname'])) {
     $target_module = $moduleHandler->getByDirname($_GET['dirname']);
@@ -75,12 +75,12 @@ $db        = \XoopsDatabaseFactory::getDatabaseConnection();
 $sql       = 'SELECT bid,name,show_func,func_file,template FROM ' . $db->prefix('newblocks') . " WHERE mid='$target_mid'";
 $result    = $db->query($sql);
 $block_arr = [];
-while (false !== (list($bid, $bname, $show_func, $func_file, $template) = $db->fetchRow($result))) {
+while (list($bid, $bname, $show_func, $func_file, $template) = $db->fetchRow($result)) {
     $block_arr[$bid] = [
         'name'      => $bname,
         'show_func' => $show_func,
         'func_file' => $func_file,
-        'template'  => $template
+        'template'  => $template,
     ];
 }
 
@@ -103,7 +103,7 @@ function list_blockinstances()
         '86400'   => _DAY,
         '259200'  => sprintf(_DAYS, 3),
         '604800'  => _WEEK,
-        '2592000' => _MONTH
+        '2592000' => _MONTH,
     ];
 
     // displaying TH
@@ -132,7 +132,7 @@ function list_blockinstances()
     $module_list[_AM_SYSTEMLEVEL]['0-0'] = _AM_NWS_ALLPAGES;
     $criteria                            = new \CriteriaCompo(new \Criteria('hasmain', 1));
     $criteria->add(new \Criteria('isactive', 1));
-    /** @var XoopsModuleHandler $moduleHandler */
+    /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $module_main   = $moduleHandler->getObjects($criteria, true, true);
     if (count($module_main) > 0) {
@@ -339,7 +339,7 @@ function list_groups2()
     $result = $xoopsDB->query('SELECT i.instanceid,i.title FROM ' . $xoopsDB->prefix('block_instance') . ' i LEFT JOIN ' . $xoopsDB->prefix('newblocks') . " b ON i.bid=b.bid WHERE b.mid='$target_mid'");
 
     $item_list = [];
-    while (false !== (list($iid, $title) = $xoopsDB->fetchRow($result))) {
+    while (list($iid, $title) = $xoopsDB->fetchRow($result)) {
         $item_list[$iid] = $title;
     }
 
@@ -359,7 +359,7 @@ if (!empty($_POST['submit'])) {
         redirect_header(XOOPS_URL . '/', 3, $GLOBALS['xoopsSecurity']->getErrors());
     }
 
-    require_once __DIR__   . '/mygroupperm.php';
+    require_once __DIR__ . '/mygroupperm.php';
     redirect_header(XOOPS_URL . '/modules/' . $xoopsModule->dirname() . "/admin/myblocksadmin.php$query4redirect", 1, _MD_AM_DBUPDATED);
 }
 

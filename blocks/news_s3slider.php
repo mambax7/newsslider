@@ -6,23 +6,29 @@
  * Module: newsslider 1.2
  * Author: Yerres
  * Licence : GPL
- *
  */
 
 use XoopsModules\Newsslider;
 
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
+/**
+ * @param $options
+ * @return array
+ */
 function b_news_s3slider_show($options)
 {
     global $xoopsDB, $xoopsUser;
     $myts = \MyTextSanitizer::getInstance();
 
     $block = [];
-    /** @var XoopsModuleHandler $moduleHandler */
+    /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $module        = $moduleHandler->getByDirname('news');
-    if (!is_object($module)) {
+//    if (!is_object($module)) {
+//        return $block;
+//    }
+    if (!xoops_isActiveModule('news')) {
         return $block;
     }
     if (!isset($newsConfig)) {
@@ -30,7 +36,7 @@ function b_news_s3slider_show($options)
         $newsConfig    = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
     }
 
-//    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
+    //    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
     require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
 
     $block['speed']       = isset($options[1]) && '' != $options[1] ? $options[1] : '5';
@@ -38,7 +44,7 @@ function b_news_s3slider_show($options)
     $block['author']      = (1 == $options[3]) ? 1 : 0;
     $block['sort']        = $options[4];
 
-    $tmpstory = new \XoopsModules\News\NewsStory;
+    $tmpstory = new \XoopsModules\News\NewsStory();
     // for compatibility with old News versions
     if ($module->getVar('version') >= 150) {
         $restricted = news_getmoduleoption('restrictindex');
@@ -72,7 +78,7 @@ function b_news_s3slider_show($options)
         $news = [];
 
         $title = $story->title();
-        if (strlen($title) > $options[6]) {
+        if (mb_strlen($title) > $options[6]) {
             $title = xoops_substr($title, 0, $options[6] + 3);
         }
         $news['title'] = $title;
@@ -133,6 +139,10 @@ function b_news_s3slider_show($options)
 }
 
 //----
+/**
+ * @param $options
+ * @return string
+ */
 function b_news_s3slider_edit($options)
 {
     global $xoopsDB;
@@ -191,13 +201,13 @@ function b_news_s3slider_edit($options)
     $form .= "<input type='radio' name='options[12]' value='0'" . ((0 == $options[12]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //--- get topics
     $form .= "<tr><td class='even'>" . _MB_NWS_TOPICS . "</td><td class='odd'><select id=\"options[13]\" name=\"options[]\" multiple=\"multiple\">";
-    /** @var XoopsModuleHandler $moduleHandler */
+    /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $newsModule    = $moduleHandler->getByDirname('news');
     if (is_object($newsModule)) {
         $isAll        = empty($options[13]) ? true : false;
         $options_tops = array_slice($options, 13);
-//        require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
+        //        require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
         $xt        = new \XoopsModules\Newsslider\Topic($xoopsDB->prefix('topics'));
         $alltopics = $xt->getTopicsList();
         ksort($alltopics);

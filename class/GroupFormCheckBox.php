@@ -1,4 +1,7 @@
-<?php namespace XoopsModules\Newsslider;
+<?php
+
+namespace XoopsModules\Newsslider;
+
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -17,9 +20,6 @@
  * @author       XOOPS Development Team,
  * @author       GIJ=CHECKMATE (PEAK Corp. http://www.peak.ne.jp/)
  */
-
-use XoopsModules\Newsslider;
-
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 require_once XOOPS_ROOT_PATH . '/class/xoopsform/formelement.php';
@@ -27,7 +27,6 @@ require_once XOOPS_ROOT_PATH . '/class/xoopsform/formhidden.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsform/formbutton.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsform/formelementtray.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsform/form.php';
-
 
 /**
  * Renders checkbox options for a group permission form
@@ -103,7 +102,7 @@ class GroupFormCheckBox extends \XoopsFormElement
      */
     public function setOptionTree(&$optionTree)
     {
-        $this->_optionTree =& $optionTree;
+        $this->_optionTree = &$optionTree;
     }
 
     /**
@@ -209,7 +208,8 @@ class GroupFormCheckBox extends \XoopsFormElement
                  . '[itemname]['
                  . $option['id']
                  . ']" value="'
-                 . htmlspecialchars($option['name'], ENT_QUOTES | ENT_HTML5)
+                 . htmlspecialchars($option['name'], ENT_QUOTES
+                                                     | ENT_HTML5)
                  . "\"><br>\n";
         if (isset($option['children'])) {
             foreach ($option['children'] as $child) {

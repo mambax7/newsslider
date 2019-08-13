@@ -1,8 +1,6 @@
-<?php namespace XoopsModules\Newsslider;
+<?php
 
-use Xmf\Request;
-use XoopsModules\Newsslider;
-use XoopsModules\Newsslider\Common;
+namespace XoopsModules\Newsslider;
 
 /**
  * Class Utility

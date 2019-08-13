@@ -9,9 +9,9 @@ area and select add a block Scrolling News.
 
 Requirements
 -------------------------
-XOOPS 2.0.6+
+XOOPS 2.5.9+
 Newsslider requires a recent version of the News module available at www.xoops.org
-(at least Version 1.44)
+(at least Version 1.73)
 
 
 Updates & new Versions
@@ -54,5 +54,5 @@ Some features may be missing or incomplete.  Bugs may appear, even security hole
 
 History
 -------------------------
-Dec 2011
-first release
+see changelog.txt
+

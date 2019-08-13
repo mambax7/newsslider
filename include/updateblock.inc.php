@@ -1,10 +1,8 @@
 <?php
-//
 
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
-if (substr(XOOPS_VERSION, 6, 3) < 2.1) {
-
+if (mb_substr(XOOPS_VERSION, 6, 3) < 2.1) {
     // Keep Block option values when update (by nobunobu)
     global $xoopsDB;
     $query  = 'SELECT mid FROM ' . $xoopsDB->prefix('modules') . " WHERE dirname='" . $modversion['dirname'] . "' ";

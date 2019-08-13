@@ -26,11 +26,11 @@
 //  ------------------------------------------------------------------------ //
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
-require_once __DIR__   . '/preloads/autoloader.php';
+require_once __DIR__ . '/preloads/autoloader.php';
 
 $modversion['version']             = 1.4;
-$modversion['module_status']       = 'Beta 1';
-$modversion['release_date']        = '2018/09/22';
+$modversion['module_status']       = 'Beta 2';
+$modversion['release_date']        = '2019/08/13';
 $modversion['name']                = _MI_NWS_NAME;
 $modversion['description']         = _MI_NWS_DESC;
 $modversion['author']              = 'Yerres';
@@ -46,8 +46,8 @@ $modversion['modicons16']          = 'assets/images/icons/16';
 $modversion['modicons32']          = 'assets/images/icons/32';
 $modversion['module_website_url']  = 'www.xoops.org';
 $modversion['module_website_name'] = 'XOOPS';
-$modversion['min_php']             = '5.6';
-$modversion['min_xoops']           = '2.5.9';
+$modversion['min_php']             = '5.5';
+$modversion['min_xoops']           = '2.5.10';
 $modversion['min_admin']           = '1.2';
 $modversion['min_db']              = ['mysql' => '5.5'];
 
@@ -128,5 +128,5 @@ $modversion['hasNotification'] = 0;
 if (!empty($_POST['fct']) && !empty($_POST['op']) && !empty($_POST['diranme']) && 'modulesadmin' === $_POST['fct']
     && 'update_ok' === $_POST['op']
     && $_POST['dirname'] == $modversion['dirname']) {
-    require_once __DIR__   . '/include/onupdate.inc.php';
+    require_once __DIR__ . '/include/onupdate.inc.php';
 }

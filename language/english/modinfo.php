@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Module: newsslider
  * Version: 1.1
  * Release Date: 11 Jan 2012 Yerres
@@ -27,7 +26,7 @@ define('_MI_NWS_BNAME5', 'bxSlider');
 //1.3
 //Help
 define('_MI_NWS_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_NWS_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+define('_MI_NWS_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_NWS_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_NWS_OVERVIEW', 'Overview');
 

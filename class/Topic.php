@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Newsslider;
+<?php
+
+namespace XoopsModules\Newsslider;
 
 /**
  * XOOPS news topic
@@ -17,7 +19,6 @@
  * @author              Kazumi Ono (AKA onokazu) http://www.myweb.ne.jp/, http://jp.xoops.org/
  * @deprecated
  */
-
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 //$GLOBALS['xoopsLogger']->addDeprecated("'/class/xoopstopic.php' is deprecated since XOOPS 2.5.4, please create your own class instead.");
@@ -39,7 +40,7 @@ class Topic
     public $mid; // module id used for setting permission
 
     /**
-     * @param     $table
+     * @param           $table
      * @param int|array $topicid
      */
     public function __construct($table, $topicid = 0)
@@ -139,11 +140,11 @@ class Topic
             if (empty($this->topic_id)) {
                 $this->topic_id = $this->db->getInsertId();
             }
-            $xt            = new XoopsTree($this->table, 'topic_id', 'topic_pid');
+            $xt            = new \XoopsTree($this->table, 'topic_id', 'topic_pid');
             $parent_topics = $xt->getAllParentId($this->topic_id);
             if (!empty($this->m_groups) && is_array($this->m_groups)) {
                 foreach ($this->m_groups as $m_g) {
-                    $moderate_topics = XoopsPerms::getPermitted($this->mid, 'ModInTopic', $m_g);
+                    $moderate_topics = \XoopsPerms::getPermitted($this->mid, 'ModInTopic', $m_g);
                     $add             = true;
                     // only grant this permission when the group has this permission in all parent topics of the created topic
                     foreach ($parent_topics as $p_topic) {
@@ -153,7 +154,7 @@ class Topic
                         }
                     }
                     if (true == $add) {
-                        $xp = new XoopsPerms();
+                        $xp = new \XoopsPerms();
                         $xp->setModuleId($this->mid);
                         $xp->setName('ModInTopic');
                         $xp->setItemId($this->topic_id);
@@ -164,7 +165,7 @@ class Topic
             }
             if (!empty($this->s_groups) && is_array($this->s_groups)) {
                 foreach ($s_groups as $s_g) {
-                    $submit_topics = XoopsPerms::getPermitted($this->mid, 'SubmitInTopic', $s_g);
+                    $submit_topics = \XoopsPerms::getPermitted($this->mid, 'SubmitInTopic', $s_g);
                     $add           = true;
                     foreach ($parent_topics as $p_topic) {
                         if (!in_array($p_topic, $submit_topics)) {
@@ -173,7 +174,7 @@ class Topic
                         }
                     }
                     if (true == $add) {
-                        $xp = new XoopsPerms();
+                        $xp = new \XoopsPerms();
                         $xp->setModuleId($this->mid);
                         $xp->setName('SubmitInTopic');
                         $xp->setItemId($this->topic_id);
@@ -184,7 +185,7 @@ class Topic
             }
             if (!empty($this->r_groups) && is_array($this->r_groups)) {
                 foreach ($r_groups as $r_g) {
-                    $read_topics = XoopsPerms::getPermitted($this->mid, 'ReadInTopic', $r_g);
+                    $read_topics = \XoopsPerms::getPermitted($this->mid, 'ReadInTopic', $r_g);
                     $add         = true;
                     foreach ($parent_topics as $p_topic) {
                         if (!in_array($p_topic, $read_topics)) {
@@ -193,7 +194,7 @@ class Topic
                         }
                     }
                     if (true == $add) {
-                        $xp = new XoopsPerms();
+                        $xp = new \XoopsPerms();
                         $xp->setModuleId($this->mid);
                         $xp->setName('ReadInTopic');
                         $xp->setItemId($this->topic_id);
@@ -270,11 +271,15 @@ class Topic
         return $imgurl;
     }
 
+    /**
+     * @return null
+     */
     public function prefix()
     {
         if (isset($this->prefix)) {
             return $this->prefix;
         }
+
         return null;
     }
 
@@ -284,11 +289,11 @@ class Topic
     public function getFirstChildTopics()
     {
         $ret       = [];
-        $xt        = new XoopsTree($this->table, 'topic_id', 'topic_pid');
+        $xt        = new \XoopsTree($this->table, 'topic_id', 'topic_pid');
         $topic_arr = $xt->getFirstChild($this->topic_id, 'topic_title');
         if (is_array($topic_arr) && count($topic_arr)) {
             foreach ($topic_arr as $topic) {
-                $ret[] = new XoopsTopic($this->table, $topic);
+                $ret[] = new \XoopsTopic($this->table, $topic);
             }
         }
 
@@ -301,11 +306,11 @@ class Topic
     public function getAllChildTopics()
     {
         $ret       = [];
-        $xt        = new XoopsTree($this->table, 'topic_id', 'topic_pid');
+        $xt        = new \XoopsTree($this->table, 'topic_id', 'topic_pid');
         $topic_arr = $xt->getAllChild($this->topic_id, 'topic_title');
         if (is_array($topic_arr) && count($topic_arr)) {
             foreach ($topic_arr as $topic) {
-                $ret[] = new XoopsTopic($this->table, $topic);
+                $ret[] = new \XoopsTopic($this->table, $topic);
             }
         }
 
@@ -318,11 +323,11 @@ class Topic
     public function getChildTopicsTreeArray()
     {
         $ret       = [];
-        $xt        = new XoopsTree($this->table, 'topic_id', 'topic_pid');
+        $xt        = new \XoopsTree($this->table, 'topic_id', 'topic_pid');
         $topic_arr = $xt->getChildTreeArray($this->topic_id, 'topic_title');
         if (is_array($topic_arr) && count($topic_arr)) {
             foreach ($topic_arr as $topic) {
-                $ret[] = new XoopsTopic($this->table, $topic);
+                $ret[] = new \XoopsTopic($this->table, $topic);
             }
         }
 
@@ -337,7 +342,7 @@ class Topic
      */
     public function makeTopicSelBox($none = 0, $seltopic = -1, $selname = '', $onchange = '')
     {
-        $xt = new XoopsTree($this->table, 'topic_id', 'topic_pid');
+        $xt = new \XoopsTree($this->table, 'topic_id', 'topic_pid');
         if (-1 != $seltopic) {
             $xt->makeMySelBox('topic_title', 'topic_title', $seltopic, $none, $selname, $onchange);
         } elseif (!empty($this->topic_id)) {
@@ -348,6 +353,7 @@ class Topic
     }
 
     //generates nicely formatted linked path from the root id to a given id
+
     /**
      * @param $funcURL
      *
@@ -355,7 +361,7 @@ class Topic
      */
     public function getNiceTopicPathFromId($funcURL)
     {
-        $xt  = new XoopsTree($this->table, 'topic_id', 'topic_pid');
+        $xt  = new \XoopsTree($this->table, 'topic_id', 'topic_pid');
         $ret = $xt->getNicePathFromId($this->topic_id, 'topic_title', $funcURL);
 
         return $ret;
@@ -366,7 +372,7 @@ class Topic
      */
     public function getAllChildTopicsId()
     {
-        $xt  = new XoopsTree($this->table, 'topic_id', 'topic_pid');
+        $xt  = new \XoopsTree($this->table, 'topic_id', 'topic_pid');
         $ret = $xt->getAllChildId($this->topic_id, 'topic_title');
 
         return $ret;
@@ -381,7 +387,7 @@ class Topic
         $ret    = [];
         $myts   = \MyTextSanitizer::getInstance();
         while (false !== ($myrow = $this->db->fetchArray($result))) {
-            $ret[$myrow['topic_id']] = ['title' => $myts->htmlspecialchars($myrow['topic_title']), 'pid' => $myrow['topic_pid']];
+            $ret[$myrow['topic_id']] = ['title' => $myts->htmlSpecialChars($myrow['topic_title']), 'pid' => $myrow['topic_pid']];
         }
 
         return $ret;
@@ -400,8 +406,8 @@ class Topic
         list($count) = $this->db->fetchRow($rs);
         if ($count > 0) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 }

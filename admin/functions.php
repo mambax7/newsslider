@@ -1,12 +1,10 @@
 <?php
 /**
- *
  * Module: newsslider
  * Version: 1.1
  * Author: yerres
  * Licence: GNU
  */
-
 if (is_object($xoopsUser)) {
     $xoopsModule = XoopsModule::getByDirname('newsslider');
     if (!$xoopsUser->isAdmin($xoopsModule->mid())) {
@@ -25,7 +23,6 @@ if (is_object($xoopsUser)) {
  * @param int    $currentoption
  * @param string $breadcrumb
  */
-
 function nws_adminmenu($currentoption = 0, $breadcrumb = '')
 {
     echo "
@@ -60,7 +57,7 @@ function nws_adminmenu($currentoption = 0, $breadcrumb = '')
         require_once XOOPS_ROOT_PATH . '/modules/newsslider/language/english/modinfo.php';
     }
 
-    require_once __DIR__   . '/menu.php';
+    require_once __DIR__ . '/menu.php';
 
     echo '<div id="buttontop">';
     echo '<table style="width: 100%; padding: 0;" cellspacing="0"><tr>';

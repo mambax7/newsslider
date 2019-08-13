@@ -16,6 +16,7 @@
  * @since
  * @author       XOOPS Development Team, Kazumi Ono (AKA onokazu)
  */
+
 use XoopsModules\Newsslider;
 
 #global $xoopsConfig;
@@ -60,7 +61,6 @@ if (0 != $admintest) {
 
             require_once XOOPS_ROOT_PATH . '/modules/system/admin/' . $fct . '/xoops_version.php';
             // addendum for Xoops 2.3+
-
 
             /** @var Newsslider\Helper $helper */
             $helper = Newsslider\Helper::getInstance();
@@ -118,7 +118,7 @@ if (false !== $error) {
     $counter   = 0;
     $class     = 'even';
     while ($file = readdir($handle)) {
-        if ('cvs' !== strtolower($file) && !preg_match('/[.]/', $file) && is_dir($admin_dir . '/' . $file)) {
+        if ('cvs' !== mb_strtolower($file) && !preg_match('/[.]/', $file) && is_dir($admin_dir . '/' . $file)) {
             include $admin_dir . '/' . $file . '/xoops_version.php';
             if ($modversion['hasAdmin']) {
                 $category = isset($modversion['category']) ? (int)$modversion['category'] : 0;

@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Module: newsslider
  * Version: 1.1
  * Release Date: 11 Jan 2012 Yerres

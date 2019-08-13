@@ -1,4 +1,7 @@
-<?php namespace XoopsModules\Newsslider;
+<?php
+
+namespace XoopsModules\Newsslider;
+
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -17,9 +20,6 @@
  * @author       XOOPS Development Team,
  * @author       GIJ=CHECKMATE (PEAK Corp. http://www.peak.ne.jp/)
  */
-
-use XoopsModules\Newsslider;
-
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 require_once XOOPS_ROOT_PATH . '/class/xoopsform/formelement.php';
@@ -75,7 +75,7 @@ class GroupPermForm extends \XoopsForm
     public function __construct($title, $modid, $permname, $permdesc)
     {
         //      $this->XoopsForm($title, 'groupperm_form', XOOPS_URL.'/modules/system/admin/groupperm.php', 'post'); GIJ
-        parent::__construct($title, 'groupperm_form', '', 'post' );
+        parent::__construct($title, 'groupperm_form', '', 'post');
         $this->_modid    = (int)$modid;
         $this->_permName = $permname;
         $this->_permDesc = $permdesc;
@@ -112,7 +112,7 @@ class GroupPermForm extends \XoopsForm
             'permname' => $permName,
             'itemid'   => $itemId,
             'itemname' => $itemName,
-            'selected' => false
+            'selected' => false,
         ];
     }
 
@@ -147,16 +147,14 @@ class GroupPermForm extends \XoopsForm
      */
     public function render()
     {
-
-
         // load all child ids for javascript codes
         foreach (array_keys($this->_itemTree) as $item_id) {
             $this->_itemTree[$item_id]['allchild'] = [];
             $this->_loadAllChildItemIds($item_id, $this->_itemTree[$item_id]['allchild']);
         }
-        $grouppermHandler  = xoops_getHandler('groupperm');
-        $memberHandler = xoops_getHandler('member');
-        $glist         = $memberHandler->getGroupList();
+        $grouppermHandler = xoops_getHandler('groupperm');
+        $memberHandler    = xoops_getHandler('member');
+        $glist            = $memberHandler->getGroupList();
         foreach (array_keys($glist) as $i) {
             // get selected item id(s) for each group
             $selected = $grouppermHandler->getItemIds($this->_permName, $i, $this->_modid);
@@ -203,7 +201,7 @@ class GroupPermForm extends \XoopsForm
                 $ret .= $elements[$i]->render();
             }
         }
-//mb        $ret .= '</table>' . $GLOBALS['xoopsSecurity']->getTokenHTML('myblocksadmin') . '</form>';
+        //mb        $ret .= '</table>' . $GLOBALS['xoopsSecurity']->getTokenHTML('myblocksadmin') . '</form>';
         $ret .= '</table>' . $GLOBALS['xoopsSecurity']->getTokenHTML() . '</form>';
 
         return $ret;

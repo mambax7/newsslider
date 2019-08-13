@@ -1,13 +1,11 @@
 <?php
 /**
- *
  * Module: newsslider
  * Version: 1.1
  * Release Date: 11 Jan 2012 Yerres
  * Author: Yerres
  * Licence: GNU
  */
-
 define('_MI_NWS_NAME', 'Newsslider');
 define('_MI_NWS_DESC', 'Newsslider für Artikel');
 

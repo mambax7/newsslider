@@ -1,13 +1,11 @@
 <?php
 /**
- *
  * Module: newsslider
  * Version: 1.1
  * Release Date: 11 Jan 2012 Yerres
  * Author: Yerres
  * Licence: GNU
  */
-
 define('_MB_NWS_SETTINGS', 'Einstellungen');
 define('_MB_NWS_SORT', 'Sortieren nach:');
 define('_MB_NWS_QUANTITY', 'Häufigkeit');

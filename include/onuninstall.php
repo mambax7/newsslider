@@ -12,11 +12,10 @@ use XoopsModules\Newsslider;
 
 /**
  * Prepares system prior to attempting to uninstall module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if ready to uninstall, false if not
  */
-
 function xoops_module_pre_uninstall_newsslider(\XoopsModule $module)
 {
     // Do some synchronization
@@ -24,9 +23,8 @@ function xoops_module_pre_uninstall_newsslider(\XoopsModule $module)
 }
 
 /**
- *
  * Performs tasks required during uninstallation of the module
- * @param XoopsModule $module {@link XoopsModule}
+ * @param \XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if uninstallation successful, false if not
  */
@@ -35,7 +33,7 @@ function xoops_module_uninstall_newsslider(\XoopsModule $module)
     //    return true;
 
     $moduleDirName      = basename(dirname(__DIR__));
-    $moduleDirNameUpper = strtoupper($moduleDirName);
+    $moduleDirNameUpper = mb_strtoupper($moduleDirName);
     $helper             = Newsslider\Helper::getInstance();
 
     /** @var Newsslider\Utility $utility */

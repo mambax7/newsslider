@@ -5,6 +5,13 @@
 require_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
+/**
+ * @param \XoopsDatabase $db
+ * @param                $gperm_modid
+ * @param null           $gperm_name
+ * @param null           $gperm_itemid
+ * @return bool
+ */
 function myDeleteByModule(\XoopsDatabase $db, $gperm_modid, $gperm_name = null, $gperm_itemid = null)
 {
     $criteria = new \CriteriaCompo(new \Criteria('gperm_modid', (int)$gperm_modid));
@@ -28,7 +35,7 @@ $modid = \Xmf\Request::getInt('modid', 1, 'POST');
 if ($modid <= 0 || !is_object($xoopsUser) || !$xoopsUser->isAdmin($modid)) {
     redirect_header(XOOPS_URL . '/user.php', 1, _NOPERM);
 }
-/** @var XoopsModuleHandler $moduleHandler */
+/** @var \XoopsModuleHandler $moduleHandler */
 $moduleHandler = xoops_getHandler('module');
 $module        = $moduleHandler->get($modid);
 if (!is_object($module) || !$module->getVar('isactive')) {

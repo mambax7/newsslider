@@ -6,23 +6,29 @@
  * Module: newsslider 1.2
  * Author: Yerres
  * Licence : GPL
- *
  */
 
 use XoopsModules\Newsslider;
 
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
+/**
+ * @param $options
+ * @return array
+ */
 function b_news_bxslider_show($options)
 {
     global $xoopsDB, $xoopsUser;
     $myts = \MyTextSanitizer::getInstance();
 
     $block = [];
-    /** @var XoopsModuleHandler $moduleHandler */
+    /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $module        = $moduleHandler->getByDirname('news');
-    if (!is_object($module)) {
+//    if (!is_object($module)) {
+//        return $block;
+//    }
+    if (!xoops_isActiveModule('news')) {
         return $block;
     }
     if (!isset($newsConfig)) {
@@ -30,14 +36,14 @@ function b_news_bxslider_show($options)
         $newsConfig    = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
     }
 
-//    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
+    //    require_once XOOPS_ROOT_PATH . '/modules/news/class/class.newsstory.php';
     require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
 
     $block['speed']       = isset($options[1]) && '' != $options[1] ? $options[1] : '5';
     $block['float']       = isset($options[2]) && '' != $options[2] ? $options[2] : '0';
     $block['imgwidth']    = isset($options[3]) && '' != $options[3] ? $options[3] : '50';
     $block['textalign']   = isset($options[4]) && '' != $options[4] ? $options[4] : '';
-    $block['loop']        = (1 == $options[5]) ? 1 : 0;//
+    $block['loop']        = (1 == $options[5]) ? 1 : 0;
     $block['captions']    = (1 == $options[6]) ? 1 : 0;
     $block['sort']        = $options[7];
     $block['mode']        = isset($options[8]) && '' != $options[8] ? $options[8] : '2';
@@ -49,7 +55,7 @@ function b_news_bxslider_show($options)
     $block['includedate'] = (1 == $options[15]) ? 1 : 0;
     $block['author']      = (1 == $options[16]) ? 1 : 0;
 
-    $tmpstory = new \XoopsModules\News\NewsStory;
+    $tmpstory = new \XoopsModules\News\NewsStory();
     // for compatibility with old News versions
     if ($module->getVar('version') >= 150) {
         $restricted = news_getmoduleoption('restrictindex');
@@ -80,7 +86,7 @@ function b_news_bxslider_show($options)
         $news = [];
 
         $title = $story->title();
-        if (strlen($title) > $options[11]) {
+        if (mb_strlen($title) > $options[11]) {
             $title = xoops_substr($title, 0, $options[11] + 3);
         }
         $news['title']       = $title;
@@ -133,6 +139,10 @@ function b_news_bxslider_show($options)
 }
 
 //----
+/**
+ * @param $options
+ * @return string
+ */
 function b_news_bxslider_edit($options)
 {
     global $xoopsDB;
@@ -227,13 +237,13 @@ function b_news_bxslider_edit($options)
     $form .= "<input type='radio' name='options[21]' value='0'" . ((0 == $options[21]) ? ' checked' : '') . '>' . _NO . '<br></td></tr>';
     //--- get allowed topics
     $form .= "<tr><td class='even'>" . _MB_NWS_TOPICS . "</td><td class='odd'><select id=\"options[22]\" name=\"options[]\" multiple=\"multiple\">";
-    /** @var XoopsModuleHandler $moduleHandler */
+    /** @var \XoopsModuleHandler $moduleHandler */
     $moduleHandler = xoops_getHandler('module');
     $newsModule    = $moduleHandler->getByDirname('news');
     if (is_object($newsModule)) {
         $isAll        = empty($options[22]) ? true : false;
         $options_tops = array_slice($options, 22);
-//        require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
+        //        require_once XOOPS_ROOT_PATH . '/class/xoopsstory.php';
         $xt        = new \XoopsModules\Newsslider\Topic($xoopsDB->prefix('topics'));
         $alltopics = $xt->getTopicsList();
         ksort($alltopics);

@@ -21,20 +21,20 @@ if (!defined('XOOPS_ORETEKI')) {
     $helper = Newsslider\Helper::getInstance();
     $helper->loadLanguage('modinfo');
 
-    require_once __DIR__   . '/menu.php';
+    require_once __DIR__ . '/menu.php';
 
     //  array_push( $adminObject , array( 'title' => _PREFERENCES , 'link' => '../system/admin.php?fct=preferences&op=showmod&mod=' . $module->getvar('mid') ) ) ;
     $menuitem_dirname = $module->getVar('dirname');
     if ($module->getVar('hasconfig')) {
         array_push($adminObject, [
             'title' => _PREFERENCES,
-            'link'  => 'admin/admin.php?fct=preferences&op=showmod&mod=' . $module->getVar('mid')
+            'link'  => 'admin/admin.php?fct=preferences&op=showmod&mod=' . $module->getVar('mid'),
         ]);
     }
 
     $menuitem_count = 0;
     $mymenu_uri     = empty($mymenu_fake_uri) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri;
-    $mymenu_link    = substr(strstr($mymenu_uri, '/admin/'), 1);
+    $mymenu_link    = mb_substr(mb_strstr($mymenu_uri, '/admin/'), 1);
 
     // hilight
     foreach (array_keys($adminObject) as $i) {
@@ -47,7 +47,7 @@ if (!defined('XOOPS_ORETEKI')) {
     }
     if (empty($adminMenu_hilighted)) {
         foreach (array_keys($adminObject) as $i) {
-            if (false !== stripos($mymenu_uri, $adminmenu[$i]['link'])) {
+            if (false !== mb_stripos($mymenu_uri, $adminmenu[$i]['link'])) {
                 $adminmenu[$i]['color'] = '#FFCCCC';
             }
         }

@@ -1,14 +1,12 @@
 <?php
 /**
- *
  * Module: newsslider
  * Version: 1.1
  * Author: yerres
  * Licence: GNU
  */
-
-include  dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
-require_once  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 global $xoopsModule, $xoopsConfig;
 
 require_once XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/admin/functions.php';
